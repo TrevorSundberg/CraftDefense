@@ -42,7 +42,6 @@ public class AttackerManager implements Listener {
   // This also controls how often AIs attack and how often they update movement,
   // so again do not change this
   private final int AiUpdateTicks = 4;
-  private final float AiDefaultSpeed = 0.16f;
 
   private final int ItemDropScale = 3;
 
@@ -386,46 +385,41 @@ public class AttackerManager implements Listener {
           }
         }
 
-        // Really poor path finding, for now...
-        if (true) {
-          double moveSpeed = AiDefaultSpeed;
-          int yOffset = 0;
+        double moveSpeed = 0;
+        int yOffset = 0;
 
-          if (e.getType() == EntityType.BAT) {
-            moveSpeed = 0.3;
-            yOffset = 1;
-          } else if (e.getType() == EntityType.ENDER_DRAGON) {
-            moveSpeed = 0;
-          } else if (e.getType() == EntityType.GHAST) {
-            moveSpeed = 0.24;
-            yOffset = 12;
-          } else if (e.getType() == EntityType.WITHER) {
-            Location witherLocation = e.getLocation();
-            double absX = Math.abs(witherLocation.getX());
-            double absZ = Math.abs(witherLocation.getZ());
-            if (absX > WitherMaxDistanceToOrigin || absZ > WitherMaxDistanceToOrigin) {
-              e.teleport(new Location(e.getWorld(), 0, witherLocation.getY() + 5, 0));
-            }
-
-            moveSpeed = 0.5;
-            yOffset = 15;
-          } else if (e.getType() == EntityType.SLIME || e.getType() == EntityType.MAGMA_CUBE) {
-            moveSpeed = 0.19;
+        if (e.getType() == EntityType.BAT) {
+          moveSpeed = 0.3;
+          yOffset = 1;
+        } else if (e.getType() == EntityType.GHAST) {
+          moveSpeed = 0.2;
+          yOffset = 12;
+        } else if (e.getType() == EntityType.WITHER) {
+          Location witherLocation = e.getLocation();
+          double absX = Math.abs(witherLocation.getX());
+          double absZ = Math.abs(witherLocation.getZ());
+          if (absX > WitherMaxDistanceToOrigin || absZ > WitherMaxDistanceToOrigin) {
+            e.teleport(new Location(e.getWorld(), 0, witherLocation.getY() + 5, 0));
           }
 
-          if (moveSpeed != 0) {
-            moveSpeed *= attacker.Wave.SpeedScale;
+          moveSpeed = 0.5;
+          yOffset = 15;
+        } else if (e.getType() == EntityType.SLIME || e.getType() == EntityType.MAGMA_CUBE) {
+          moveSpeed = 0.19;
+        }
 
-            Vector vel = e.getVelocity();
-            vel = vel.multiply(0.993);
-            Location current = e.getLocation();
-            Vector towardTarget = new Vector(targetPos.getX() - current.getX(),
-                (targetPos.getY() - current.getY() + yOffset) * 0.2, targetPos.getZ() - current.getZ());
-            towardTarget = towardTarget.normalize();
-            towardTarget = towardTarget.multiply(moveSpeed);
+        if (moveSpeed != 0) {
+          moveSpeed *= attacker.Wave.SpeedScale;
 
-            e.setVelocity(vel.add(towardTarget));
-          }
+          Vector vel = e.getVelocity();
+          vel = vel.multiply(0.993);
+          Location current = e.getLocation();
+          Vector towardTarget = new Vector(targetPos.getX() - current.getX(),
+              (targetPos.getY() - current.getY() + yOffset) * 0.2, targetPos.getZ() - current.getZ());
+          towardTarget = towardTarget.normalize();
+          towardTarget = towardTarget.multiply(moveSpeed);
+
+          e.setVelocity(vel.add(towardTarget));
         }
 
         // If the entity can't normally attack on its own, then we need to deal fake
