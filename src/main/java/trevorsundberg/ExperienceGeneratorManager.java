@@ -233,7 +233,7 @@ public class ExperienceGeneratorManager implements Listener {
     this.ValuesPerMaterial.put(Material.GLOWSTONE_DUST, 2.0f);
     this.ValuesPerMaterial.put(Material.GOLD_BLOCK, 30.0f);
     this.ValuesPerMaterial.put(Material.GOLD_INGOT, 3.0f);
-    this.ValuesPerMaterial.put(Material.GRASS, 0.3f);
+    this.ValuesPerMaterial.put(Material.GRASS_BLOCK, 0.3f);
     this.ValuesPerMaterial.put(Material.GRAVEL, 0.2f);
     this.ValuesPerMaterial.put(Material.IRON_BLOCK, 20.0f);
     this.ValuesPerMaterial.put(Material.IRON_INGOT, 2.0f);

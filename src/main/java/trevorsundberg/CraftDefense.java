@@ -812,7 +812,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
         if (Math.abs(x) <= RecommendedBuildRadius && Math.abs(z) <= RecommendedBuildRadius) {
           this.MainWorld.getBlockAt(x, this.LowestY - 1, z).setType(Material.CLAY);
         } else {
-          this.MainWorld.getBlockAt(x, this.LowestY - 1, z).setType(Material.GRASS);
+          this.MainWorld.getBlockAt(x, this.LowestY - 1, z).setType(Material.GRASS_BLOCK);
         }
 
         // If we're at the outer perimeter, then spawn bedrock

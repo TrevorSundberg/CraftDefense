@@ -477,7 +477,7 @@ public class AttackerManager implements Listener {
         chance = 0.94;
       if (m == Material.DIRT)
         chance = 0.92;
-      if (m == Material.GRASS)
+      if (m == Material.GRASS_BLOCK)
         chance = 0.91;
       if (m == Material.COARSE_DIRT)
         chance = 0.90;
