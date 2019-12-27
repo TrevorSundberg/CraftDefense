@@ -491,7 +491,7 @@ public class AttackerManager implements Listener {
         chance = 0.66;
       if (m == Material.SANDSTONE)
         chance = 0.65;
-      if (m == Material.NETHER_BRICK)
+      if (m == Material.NETHER_BRICKS)
         chance = 0.55;
       if (m == Material.STONE)
         chance = 0.52;

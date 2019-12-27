@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -959,7 +960,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
   private void generateSiegeTunnel() {
     for (int x = SpawnRadius - SiegeTunnelInCut; x <= SpawnRadius + SiegeTunnelLength; ++x) {
       for (int z = -SiegeTunnelHalfWidth; z <= SiegeTunnelHalfWidth; ++z) {
-        this.MainWorld.getBlockAt(x, this.LowestY - 1, z).setType(Material.NETHER_BRICK);
+        this.MainWorld.getBlockAt(x, this.LowestY - 1, z).setType(Material.NETHER_BRICKS);
 
         for (int y = 0; y <= (this.LowestY - 2); ++y) {
           this.MainWorld.getBlockAt(x, y, z).setType(Material.BEDROCK);
@@ -1112,8 +1113,9 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
 
         if (this.isSiegeTunnel(l)) {
           Block b = this.MainWorld.getBlockAt(l);
+          System.out.println(b.getType());
 
-          if (b.getType() == Material.NETHER_BRICK && e.getFireTicks() <= 5) {
+          if (b.getType() == Material.NETHER_BRICKS && e.getFireTicks() <= 5) {
             e.setFireTicks(70);
           }
         }
@@ -1130,7 +1132,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
 
     Wave waveCompleted = this.Waves.get(oldDay);
 
-    Player[] players = (Player[]) this.getServer().getOnlinePlayers().toArray();
+    Collection<? extends Player> players = this.getServer().getOnlinePlayers();
 
     // For now since block protection is a difficult problem to solve, just
     // regenerate the siege path
@@ -1144,10 +1146,9 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
 
       ItemStack emeralds = new ItemStack(Material.EMERALD, waveCompleted.AwardedEmeralds);
 
-      for (int i = 0; i < players.length; ++i) {
-        Player p = players[i];
-        p.getInventory().addItem(emeralds);
-        p.giveExp(waveCompleted.AwardedXp);
+      for (Player player : players) {
+        player.getInventory().addItem(emeralds);
+        player.giveExp(waveCompleted.AwardedXp);
       }
     }
     if (waveCompleted.AwardedXp != 0)
@@ -1159,14 +1160,13 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
     if (newDay == this.Waves.size()) {
       this.getServer().broadcastMessage(Text.DarkGreen + "*** Congratulations, you've beat the game! ***");
 
-      for (int i = 0; i < players.length; ++i) {
-        Player p = players[i];
-        p.setHealth(p.getMaxHealth());
-        p.setFireTicks(0);
-        p.setLevel(999);
-        p.setAllowFlight(true);
-        p.setFlying(true);
-        p.setGameMode(GameMode.CREATIVE);
+      for (Player player : players) {
+        player.setHealth(player.getMaxHealth());
+        player.setFireTicks(0);
+        player.setLevel(999);
+        player.setAllowFlight(true);
+        player.setFlying(true);
+        player.setGameMode(GameMode.CREATIVE);
       }
 
       // Disable this plugin entirely
