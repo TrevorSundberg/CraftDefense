@@ -1236,7 +1236,6 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
         double totalDelay = normalizedDelay + timePerIteration * j;
 
         this.DayTimeManager.scheduleTask(totalDelay, new Runnable() {
-          @SuppressWarnings("deprecation")
           @Override
           public void run() {
             Player targetedPlayer = self.getRandomPlayer();
@@ -1614,7 +1613,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       s = new ItemStack(Material.LAVA_BUCKET, 1);
       p.getInventory().addItem(s);
 
-      s = new ItemStack(Material.LEGACY_SNOW_BALL, 1);
+      s = new ItemStack(Material.SNOWBALL, 1);
       p.getInventory().addItem(s);
 
       s = new ItemStack(Material.WATER_BUCKET, 1);
