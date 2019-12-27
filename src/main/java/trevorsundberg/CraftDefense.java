@@ -940,9 +940,6 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
           } else if (x != 0 && z != 0) {
             Location l = new Location(this.MainWorld, x + 0.5, this.LowestY, z + 0.5);
 
-            // Minecart minecart = (Minecart)
-            // this.MainWorld.spawnEntity(l, EntityType.MINECART);
-
             Villager villager = (Villager) this.MainWorld.spawnEntity(l, EntityType.VILLAGER);
             villager.setBreed(false);
 
@@ -951,6 +948,9 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
             currentProf %= professions.length;
 
             villager.setProfession(randProf);
+            // Set the level betweeen [3,5]
+            villager.setVillagerLevel(3 + this.Rand.nextInt(3));
+            villager.setVillagerExperience(Integer.MAX_VALUE);
 
             // minecart.setPassenger(villager);
             this.Villagers.add(villager);

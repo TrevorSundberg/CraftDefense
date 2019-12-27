@@ -171,8 +171,8 @@ DONE - Teleporters don't work
 DONE - Experience generator doesn't work
 DONE - Infinite torch fix
 DONE - Fix fence positions
+DONE - Villagers won't trade
 
-Villagers won't trade
 Pathing is kinda bad
 Bad mobs spawn, can we try peaceful?
 Fix anvil setData calls
