@@ -13,10 +13,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.PigZombie;
-import org.bukkit.entity.Skeleton;
-import org.bukkit.entity.Skeleton.SkeletonType;
 import org.bukkit.entity.Wolf;
-import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
@@ -268,16 +265,10 @@ public class Wave {
       return w.spawnEntity(l, EntityType.WITCH);
     case WITHER:
       return w.spawnEntity(l, EntityType.WITHER);
-    case WITHER_SKELETON: {
-      Skeleton skeleton = (Skeleton) w.spawnEntity(l, EntityType.SKELETON);
-      skeleton.setSkeletonType(SkeletonType.WITHER);
-      return skeleton;
-    }
-    case VILLAGER_ZOMBIE: {
-      Zombie zombie = (Zombie) w.spawnEntity(l, EntityType.ZOMBIE);
-      zombie.setVillager(true);
-      return zombie;
-    }
+    case WITHER_SKELETON:
+      return w.spawnEntity(l, EntityType.WITHER_SKELETON);
+    case VILLAGER_ZOMBIE:
+      return w.spawnEntity(l, EntityType.ZOMBIE_VILLAGER);
     case WOLF: {
       Wolf wolf = (Wolf) w.spawnEntity(l, EntityType.WOLF);
       wolf.setAngry(true);
