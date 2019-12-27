@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.UUID;
 
-import org.bukkit.DyeColor;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -17,17 +16,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.material.Wool;
 
 public class TeleporterManager implements Listener {
-  private final HashMap<DyeColor, ArrayList<Teleporter>> TeleportersByColor = new HashMap<DyeColor, ArrayList<Teleporter>>();
+  private final HashMap<Material, ArrayList<Teleporter>> TeleportersByColor = new HashMap<Material, ArrayList<Teleporter>>();
 
   private final HashMap<Location, Teleporter> TeleporterByLocation = new HashMap<Location, Teleporter>();
 
   private final HashSet<UUID> StandingOnTeleporter = new HashSet<UUID>();
 
   public class Teleporter {
-    public DyeColor Color;
+    public Material Color;
     public Location[] Locations = new Location[2];
   }
 
@@ -75,6 +73,30 @@ public class TeleporterManager implements Listener {
     }
   }
 
+  public static boolean isWool(Material material) {
+    switch (material) {
+    case BLACK_WOOL:
+    case BLUE_WOOL:
+    case BROWN_WOOL:
+    case CYAN_WOOL:
+    case GRAY_WOOL:
+    case GREEN_WOOL:
+    case LIGHT_BLUE_WOOL:
+    case LIGHT_GRAY_WOOL:
+    case LIME_WOOL:
+    case MAGENTA_WOOL:
+    case ORANGE_WOOL:
+    case PINK_WOOL:
+    case PURPLE_WOOL:
+    case RED_WOOL:
+    case WHITE_WOOL:
+    case YELLOW_WOOL:
+      return true;
+    default:
+      return false;
+    }
+  }
+
   @EventHandler
   public Teleporter onBlockPlaced(BlockPlaceEvent event) {
     Location l = event.getBlockPlaced().getLocation();
@@ -96,28 +118,25 @@ public class TeleporterManager implements Listener {
 
       Block b = w.getBlockAt(below);
 
-      if (b.getType() == Material.LEGACY_WOOL) {
+      if (TeleporterManager.isWool(b.getType())) {
+        Material color = b.getType();
         // Do any prior cleanup, just so we don't ever get two teleporters at the same
         // place
         this.destroyInvalidTeleporters();
 
-        // This is now a teleporter!
-        @SuppressWarnings("deprecation")
-        Wool wool = new Wool(b.getType(), b.getData());
-
         Teleporter t = new Teleporter();
         t.Locations[0] = top;
         t.Locations[1] = below;
-        t.Color = wool.getColor();
+        t.Color = color;
 
         this.TeleporterByLocation.put(t.Locations[0], t);
         this.TeleporterByLocation.put(t.Locations[1], t);
 
-        ArrayList<Teleporter> teleporters = this.TeleportersByColor.get(wool.getColor());
+        ArrayList<Teleporter> teleporters = this.TeleportersByColor.get(color);
 
         if (teleporters == null) {
           teleporters = new ArrayList<Teleporter>();
-          this.TeleportersByColor.put(wool.getColor(), teleporters);
+          this.TeleportersByColor.put(color, teleporters);
         }
 
         event.getPlayer()
@@ -151,9 +170,8 @@ public class TeleporterManager implements Listener {
 
         // Make sure its got a stone plate on top, wool on bottom, and the wool matches
         // the color
-        @SuppressWarnings("deprecation")
-        boolean isInvalid = plate.getType() != Material.STONE_PRESSURE_PLATE || wool.getType() != Material.LEGACY_WOOL
-            || new Wool(wool.getType(), wool.getData()).getColor() != teleporter.Color;
+        boolean isInvalid = plate.getType() != Material.STONE_PRESSURE_PLATE
+            || !TeleporterManager.isWool(wool.getType()) || wool.getType() != teleporter.Color;
 
         if (isInvalid) {
           // It would be nice to swap erase here, but we want to preserve order (linked
