@@ -1,6 +1,7 @@
 main: trevorsundberg.CraftDefense
 name: CraftDefense
 version: 1.0
+api-version: 1.13
 author: Trevor Sundberg
 description: A wave based tower defense where the player try to defend the villagers.
 load: POSTWORLD
