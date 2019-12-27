@@ -131,7 +131,7 @@ public class AttackerManager implements Listener {
         }
 
         if (damager instanceof Snowball) {
-          weaponStack = new ItemStack(Material.LEGACY_SNOW_BALL);
+          weaponStack = new ItemStack(Material.SNOWBALL);
           event.setDamage(Math.max(event.getDamage(), 1));
         }
 
