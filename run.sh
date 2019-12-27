@@ -1,3 +1,4 @@
+mvn package
 rm -rf server
 mkdir server
 cd server
