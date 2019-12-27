@@ -1373,19 +1373,42 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       case BLAZE:
       case CAVE_SPIDER:
       case CREEPER:
+      case DROWNED:
+      case ELDER_GUARDIAN:
       case ENDER_DRAGON:
       case ENDERMAN:
+      case ENDERMITE:
+      case EVOKER:
+      case EVOKER_FANGS:
       case GHAST:
       case GIANT:
+      case GUARDIAN:
+      case HUSK:
+      case ILLUSIONER:
+      case IRON_GOLEM:
       case MAGMA_CUBE:
+      case MINECART_MOB_SPAWNER:
+      case PHANTOM:
       case PIG_ZOMBIE:
+      case PILLAGER:
+      case RAVAGER:
+      case SHULKER:
       case SILVERFISH:
       case SKELETON:
+      case SKELETON_HORSE:
       case SLIME:
       case SPIDER:
+      case STRAY:
+      case VEX:
+      case VINDICATOR:
       case WITCH:
       case WITHER:
+      case WITHER_SKELETON:
+      case WOLF:
       case ZOMBIE:
+      case ZOMBIE_HORSE:
+      case ZOMBIE_VILLAGER:
+
         event.setCancelled(true);
         break;
       }
