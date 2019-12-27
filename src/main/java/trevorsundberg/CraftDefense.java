@@ -904,7 +904,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
     }
 
     this.MainWorld.getBlockAt(0, this.LowestY + 0, 0).setType(Material.ANVIL);
-    this.MainWorld.getBlockAt(0, this.LowestY + 1, 0).setType(Material.LEGACY_ENCHANTMENT_TABLE);
+    this.MainWorld.getBlockAt(0, this.LowestY + 1, 0).setType(Material.ENCHANTING_TABLE);
 
     this.Villagers.clear();
     this.AttackerManager.FixedTargets.clear();

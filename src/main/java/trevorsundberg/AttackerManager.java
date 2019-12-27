@@ -221,7 +221,7 @@ public class AttackerManager implements Listener {
     List<ItemStack> drops = event.getDrops();
     for (int i = 0; i < drops.size(); ++i) {
       ItemStack stack = drops.get(i);
-      if (stack.getType() == Material.LEGACY_SULPHUR) {
+      if (stack.getType() == Material.GUNPOWDER) {
         containsGunPowder = true;
         break;
       }
@@ -453,8 +453,7 @@ public class AttackerManager implements Listener {
 
     Material m = b.getType();
 
-    if (m != Material.BEDROCK && m != Material.AIR && m != Material.WATER && m != Material.LEGACY_STATIONARY_WATER
-        && m != Material.LEGACY_ENCHANTMENT_TABLE) {
+    if (m != Material.BEDROCK && m != Material.AIR && m != Material.WATER && m != Material.ENCHANTING_TABLE) {
       double chance = 1.0;
 
       if (m == Material.NETHERRACK)

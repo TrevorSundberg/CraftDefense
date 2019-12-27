@@ -224,7 +224,7 @@ public class ExperienceGeneratorManager implements Listener {
     this.ValuesPerMaterial.put(Material.EMERALD_BLOCK, 10.0f);
     this.ValuesPerMaterial.put(Material.EMERALD_ORE, 5.0f);
     this.ValuesPerMaterial.put(Material.ENCHANTED_BOOK, 2.0f);
-    this.ValuesPerMaterial.put(Material.LEGACY_ENCHANTMENT_TABLE, 30.0f);
+    this.ValuesPerMaterial.put(Material.ENCHANTING_TABLE, 30.0f);
     this.ValuesPerMaterial.put(Material.ENDER_CHEST, 20.0f);
     this.ValuesPerMaterial.put(Material.LEGACY_EXP_BOTTLE, 0.0f);
     this.ValuesPerMaterial.put(Material.LEGACY_EYE_OF_ENDER, 4.0f);
