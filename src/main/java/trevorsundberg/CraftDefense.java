@@ -1595,7 +1595,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       s = new ItemStack(Material.DIAMOND_BLOCK, 10);
       p.getInventory().addItem(s);
 
-      s = new ItemStack(Material.LEGACY_WOOD, 64);
+      s = new ItemStack(Material.OAK_WOOD, 64);
       p.getInventory().addItem(s);
 
       s = new ItemStack(Material.REDSTONE_BLOCK, 64);
@@ -1619,10 +1619,10 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       s = new ItemStack(Material.WATER_BUCKET, 1);
       p.getInventory().addItem(s);
 
-      s = new ItemStack(Material.LEGACY_RAW_FISH, 1);
+      s = new ItemStack(Material.TROPICAL_FISH, 1);
       p.getInventory().addItem(s);
 
-      s = new ItemStack(Material.LEGACY_WOOL, 20);
+      s = new ItemStack(Material.WHITE_WOOL, 20);
       p.getInventory().addItem(s);
 
       s = new ItemStack(Material.ICE, 10);
@@ -1637,7 +1637,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       s = new ItemStack(Material.LAPIS_BLOCK, 10);
       p.getInventory().addItem(s);
 
-      s = new ItemStack(Material.LEGACY_STONE_PLATE, 10);
+      s = new ItemStack(Material.STONE_PRESSURE_PLATE, 10);
       p.getInventory().addItem(s);
 
       p.updateInventory();

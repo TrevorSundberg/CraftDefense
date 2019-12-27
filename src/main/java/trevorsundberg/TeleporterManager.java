@@ -85,7 +85,7 @@ public class TeleporterManager implements Listener {
       Location current = new Location(w, l.getBlockX(), l.getBlockY() + dy, l.getBlockZ());
       Block b = w.getBlockAt(current);
 
-      if (b.getType() == Material.LEGACY_STONE_PLATE) {
+      if (b.getType() == Material.STONE_PRESSURE_PLATE) {
         top = l;
         break;
       }
@@ -152,7 +152,7 @@ public class TeleporterManager implements Listener {
         // Make sure its got a stone plate on top, wool on bottom, and the wool matches
         // the color
         @SuppressWarnings("deprecation")
-        boolean isInvalid = plate.getType() != Material.LEGACY_STONE_PLATE || wool.getType() != Material.LEGACY_WOOL
+        boolean isInvalid = plate.getType() != Material.STONE_PRESSURE_PLATE || wool.getType() != Material.LEGACY_WOOL
             || new Wool(wool.getType(), wool.getData()).getColor() != teleporter.Color;
 
         if (isInvalid) {
