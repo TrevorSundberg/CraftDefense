@@ -30,7 +30,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.util.Vector;
 
@@ -57,7 +56,7 @@ public class AttackerManager implements Listener {
   private final double DamageTargetChance = 0.22;
   private Random Rand;
 
-  private Plugin Plugin;
+  private CraftDefense Plugin;
 
   private class Attacker {
     public Entity Entity;
@@ -71,7 +70,7 @@ public class AttackerManager implements Listener {
 
   public ArrayList<LivingEntity> FixedTargets = new ArrayList<LivingEntity>();
 
-  public void initialize(final Plugin plugin, Random rand) {
+  public void initialize(final CraftDefense plugin, Random rand) {
     this.Rand = rand;
     this.Plugin = plugin;
 
@@ -344,7 +343,7 @@ public class AttackerManager implements Listener {
         // Randomly we target players (or if its the ender dragon, only let it target
         // players)
         if (this.Rand.nextInt(2) == 0 || e.getType() == EntityType.ENDER_DRAGON || this.FixedTargets.isEmpty()) {
-          Player[] players = (Player[]) this.Plugin.getServer().getOnlinePlayers().toArray();
+          Player[] players = this.Plugin.getPlayers();
           if (players.length != 0) {
             int index = this.Rand.nextInt(players.length);
             attacker.Target = players[index];

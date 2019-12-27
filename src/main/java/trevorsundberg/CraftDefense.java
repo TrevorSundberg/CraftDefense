@@ -465,6 +465,11 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
     }
   }
 
+  public Player[] getPlayers() {
+    Player[] players = new Player[this.getServer().getOnlinePlayers().size()];
+    return this.getServer().getOnlinePlayers().toArray(players);
+  }
+
   public static void copyFolder(File src, File dest) {
     CraftDefense.copyFolder(Path.of(src.getAbsolutePath()), Path.of(dest.getAbsolutePath()));
   }
@@ -1479,7 +1484,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
   }
 
   private Player getRandomPlayer() {
-    Player[] players = (Player[]) this.getServer().getOnlinePlayers().toArray();
+    Player[] players = getPlayers();
 
     if (players.length == 0) {
       return null;
@@ -1571,8 +1576,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
 
       if (saveDirectory.exists() == false) {
 
-        Player[] players = (Player[]) this.getServer().getOnlinePlayers().toArray();
-        for (Player player : players) {
+        for (Player player : this.getServer().getOnlinePlayers()) {
           player.kickPlayer("World is reloading, please rejoin in a few seconds");
         }
 
@@ -1732,13 +1736,10 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       if (this.Villagers.size() == 0) {
         this.getServer().broadcastMessage(Text.DarkRed + "***  GAME OVER ***");
 
-        Player[] players = (Player[]) this.getServer().getOnlinePlayers().toArray();
-
-        for (int i = 0; i < players.length; ++i) {
-          Player p = players[i];
-          p.getWorld().createExplosion(p.getLocation(), 20.0f);
-          p.damage(10000);
-          p.kickPlayer("GAME OVER");
+        for (Player player : this.getServer().getOnlinePlayers()) {
+          player.getWorld().createExplosion(player.getLocation(), 20.0f);
+          player.damage(10000);
+          player.kickPlayer("GAME OVER");
         }
 
         // Turn off the plugin entirely
