@@ -18,6 +18,7 @@ import org.bukkit.Effect;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -550,7 +551,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
 
     String enchantment = getString(jAttack, "Enchantment", null);
     if (enchantment != null)
-      attack.Enchantment = Enchantment.getByName(enchantment);
+      attack.Enchantment = Enchantment.getByKey(NamespacedKey.minecraft(enchantment));
     return attack;
   }
 
@@ -1681,8 +1682,6 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
 
       s = new ItemStack(Material.STONE_PRESSURE_PLATE, 10);
       p.getInventory().addItem(s);
-
-      p.updateInventory();
       return true;
     }
 
