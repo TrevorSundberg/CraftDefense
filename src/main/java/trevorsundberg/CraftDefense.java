@@ -1118,7 +1118,6 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
 
         if (this.isSiegeTunnel(l)) {
           Block b = this.MainWorld.getBlockAt(l);
-          System.out.println(b.getType());
 
           if (b.getType() == Material.NETHER_BRICKS && e.getFireTicks() <= 5) {
             e.setFireTicks(70);
@@ -1650,6 +1649,9 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       p.getInventory().addItem(s);
 
       s = new ItemStack(Material.WHITE_WOOL, 20);
+      p.getInventory().addItem(s);
+
+      s = new ItemStack(Material.BLACK_WOOL, 20);
       p.getInventory().addItem(s);
 
       s = new ItemStack(Material.ICE, 10);
