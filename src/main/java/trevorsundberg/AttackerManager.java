@@ -485,9 +485,15 @@ public class AttackerManager implements Listener {
         chance = 0.88;
       if (m == Material.COBBLESTONE)
         chance = 0.71;
+      if (m == Material.DIORITE)
+        chance = 0.71;
+      if (m == Material.GRANITE)
+        chance = 0.71;
       if (m == Material.MOSSY_COBBLESTONE)
         chance = 0.70;
       if (m == Material.COBBLESTONE_WALL)
+        chance = 0.68;
+      if (m == Material.ANDESITE)
         chance = 0.68;
       if (m == Material.BRICK)
         chance = 0.66;
@@ -499,10 +505,16 @@ public class AttackerManager implements Listener {
         chance = 0.52;
       if (m == Material.ANVIL)
         chance = 0.50;
+      if (m == Material.POLISHED_DIORITE)
+        chance = 0.50;
       if (m == Material.COBWEB)
         chance = 0.45;
-      if (m == Material.SMOOTH_STONE)
+      if (m == Material.POLISHED_ANDESITE)
+        chance = 0.45;
+      if (m == Material.STONE_BRICKS)
         chance = 0.40;
+      if (m == Material.SMOOTH_STONE)
+        chance = 0.35;
       if (m == Material.QUARTZ_BLOCK)
         chance = 0.33;
       if (m == Material.IRON_BARS)
