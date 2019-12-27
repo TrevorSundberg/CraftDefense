@@ -169,8 +169,8 @@ DONE - Handle only damaged by
 DONE - Get a local file opening with json
 DONE - Teleporters don't work
 DONE - Experience generator doesn't work
+DONE - Infinite torch fix
 
-Infinite torch (for now just give you like 64)
 Villagers won't trade
 Pathing is kinda bad
 Bad mobs spawn, can we try peaceful?

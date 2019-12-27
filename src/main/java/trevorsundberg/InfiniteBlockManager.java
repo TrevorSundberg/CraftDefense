@@ -13,10 +13,12 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
 
 public class InfiniteBlockManager implements Listener {
   Plugin Plugin;
@@ -25,8 +27,16 @@ public class InfiniteBlockManager implements Listener {
   void initialize(Plugin plugin, HashSet<Material> blockTypes) {
     this.Plugin = plugin;
     this.BlockTypes = blockTypes;
+
+    PluginManager manager = plugin.getServer().getPluginManager();
+    manager.registerEvents(this, plugin);
+
+    for (Player player : plugin.getServer().getOnlinePlayers()) {
+      this.forceOneOfEachBlock(player);
+    }
   }
 
+  @SuppressWarnings("deprecation")
   public void forceOneOfEachBlock(Player p) {
     this.forceOneOfEachBlock(p.getInventory());
     p.updateInventory();
@@ -47,7 +57,7 @@ public class InfiniteBlockManager implements Listener {
           inv.setItem(i, item);
           foundMaterials.add(itemType);
         } else {
-          // Remove any extra infinite torches in their inventory
+          // Remove any extra infinite items in their inventory
           inv.remove(item);
         }
       }
@@ -71,6 +81,11 @@ public class InfiniteBlockManager implements Listener {
   }
 
   @EventHandler
+  public void onPlayerJoin(PlayerJoinEvent event) {
+    this.forceOneOfEachBlock(event.getPlayer());
+  }
+
+  @EventHandler
   public void onBlockPlaced(BlockPlaceEvent event) {
     ItemStack item = event.getItemInHand();
     if (this.BlockTypes.contains(item.getType())) {
@@ -88,14 +103,14 @@ public class InfiniteBlockManager implements Listener {
     }
   }
 
-  // Prevent the player from removing infinite torches (if enabled)
+  // Prevent the player from removing infinite items (if enabled)
   @EventHandler
   public void onInventoryMoveItem(InventoryMoveItemEvent event) {
-    // if (this.InfiniteTorches && event.getItem().getType() == Material.TORCH)
-    // event.setCancelled(true);
+    if (this.BlockTypes.contains(event.getItem().getType()))
+      event.setCancelled(true);
   }
 
-  // Prevent the player from picking up more torches when we already have
+  // Prevent the player from picking up more items when we already have
   // 'infinite'
   @EventHandler
   public void onInventoryPickupItem(InventoryPickupItemEvent event) {
@@ -107,12 +122,11 @@ public class InfiniteBlockManager implements Listener {
     }
   }
 
-  // This should probably never happen, but just in case it does, prevent torches
+  // This should probably never happen, but just in case it does, prevent items
   // from spawning when we have infinite
   @EventHandler
   public void onItemSpawn(ItemSpawnEvent event) {
-    // if (this.InfiniteTorches && event.getEntity().getItemStack().getType() ==
-    // Material.TORCH)
-    // event.setCancelled(true);
+    if (this.BlockTypes.contains(event.getEntity().getItemStack().getType()))
+      event.setCancelled(true);
   }
 }
