@@ -32,7 +32,6 @@ public class InfiniteBlockManager implements Listener {
     p.updateInventory();
   }
 
-  @SuppressWarnings("deprecation")
   public void forceOneOfEachBlock(Inventory inv) {
     HashSet<Material> foundMaterials = new HashSet<Material>();
 
