@@ -466,25 +466,15 @@ public class AttackerManager implements Listener {
         chance = 0.92;
       if (m == Material.GRASS)
         chance = 0.91;
-      if (m == Material.LEGACY_SOIL)
+      if (m == Material.COARSE_DIRT)
         chance = 0.90;
       if (m == Material.SOUL_SAND)
         chance = 0.88;
-      if (m == Material.LEGACY_FENCE)
-        chance = 0.85;
-      if (m == Material.LEGACY_FENCE_GATE)
-        chance = 0.84;
-      if (m == Material.LEGACY_NETHER_FENCE)
-        chance = 0.83;
-      if (m == Material.LEGACY_WOOD)
-        chance = 0.82;
-      if (m == Material.LEGACY_LOG)
-        chance = 0.80;
       if (m == Material.COBBLESTONE)
         chance = 0.71;
       if (m == Material.MOSSY_COBBLESTONE)
         chance = 0.70;
-      if (m == Material.LEGACY_COBBLE_WALL)
+      if (m == Material.COBBLESTONE_WALL)
         chance = 0.68;
       if (m == Material.BRICK)
         chance = 0.66;
@@ -496,13 +486,13 @@ public class AttackerManager implements Listener {
         chance = 0.52;
       if (m == Material.ANVIL)
         chance = 0.50;
-      if (m == Material.LEGACY_WEB)
+      if (m == Material.COBWEB)
         chance = 0.45;
-      if (m == Material.LEGACY_SMOOTH_BRICK)
+      if (m == Material.SMOOTH_STONE)
         chance = 0.40;
       if (m == Material.QUARTZ_BLOCK)
         chance = 0.33;
-      if (m == Material.LEGACY_IRON_FENCE)
+      if (m == Material.IRON_BARS)
         chance = 0.30;
       if (m == Material.BOOKSHELF)
         chance = 0.28;
