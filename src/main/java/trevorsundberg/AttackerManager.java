@@ -42,7 +42,7 @@ public class AttackerManager implements Listener {
   // This also controls how often AIs attack and how often they update movement,
   // so again do not change this
   private final int AiUpdateTicks = 4;
-  private final float AiDefaultSpeed = 0.18f;
+  private final float AiDefaultSpeed = 0.16f;
 
   private final int ItemDropScale = 3;
 
