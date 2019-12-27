@@ -170,11 +170,12 @@ DONE - Get a local file opening with json
 DONE - Teleporters don't work
 DONE - Experience generator doesn't work
 DONE - Infinite torch fix
+DONE - Fix fence positions
 
 Villagers won't trade
 Pathing is kinda bad
 Bad mobs spawn, can we try peaceful?
-Fix fence positions and any other setData calls
+Fix anvil setData calls
 
 Add enemy buffs to format
 Separate out armor and all equipment slots (let user customize)

@@ -21,6 +21,8 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.type.Gate;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
@@ -850,16 +852,27 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
     for (int x = -VillagerPenRadius; x <= VillagerPenRadius; ++x) {
       for (int z = -VillagerPenRadius; z <= VillagerPenRadius; ++z) {
         if (x == VillagerPenRadius || x == -VillagerPenRadius || z == VillagerPenRadius || z == -VillagerPenRadius) {
+          if (x != 0 && z != 0) {
+            this.MainWorld.getBlockAt(x, this.LowestY + 0, z).setType(Material.BIRCH_FENCE);
+            this.MainWorld.getBlockAt(x, this.LowestY + 1, z).setType(Material.BIRCH_FENCE);
+          }
+        }
+      }
+    }
+
+    // Add the gates afterwards so they update visuals correctly
+    for (int x = -VillagerPenRadius; x <= VillagerPenRadius; ++x) {
+      for (int z = -VillagerPenRadius; z <= VillagerPenRadius; ++z) {
+        if (x == VillagerPenRadius || x == -VillagerPenRadius || z == VillagerPenRadius || z == -VillagerPenRadius) {
           if (x == 0 || z == 0) {
             Block fence = this.MainWorld.getBlockAt(x, this.LowestY + 0, z);
-            fence.setType(Material.LEGACY_FENCE_GATE);
+            fence.setType(Material.BIRCH_FENCE_GATE);
+            Gate gate = (Gate) fence.getBlockData();
 
             if (z == 0) {
-              // fence.setData((byte) 1);
+              gate.setFacing(BlockFace.EAST);
+              fence.setBlockData(gate);
             }
-          } else {
-            this.MainWorld.getBlockAt(x, this.LowestY + 0, z).setType(Material.LEGACY_FENCE);
-            this.MainWorld.getBlockAt(x, this.LowestY + 1, z).setType(Material.LEGACY_FENCE);
           }
         }
       }
@@ -869,17 +882,17 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       for (int z = -VillagerHouseRadius; z <= VillagerHouseRadius; ++z) {
         if (Math.abs(x) == VillagerHouseRadius || Math.abs(z) == VillagerHouseRadius) {
           if (x != 0 && z != 0) {
-            this.MainWorld.getBlockAt(x, this.LowestY + 0, z).setType(Material.LEGACY_WOOD);
+            this.MainWorld.getBlockAt(x, this.LowestY + 0, z).setType(Material.BIRCH_PLANKS);
           }
 
           if (Math.abs(x) == 1 || Math.abs(z) == 1) {
             this.MainWorld.getBlockAt(x, this.LowestY + 1, z).setType(Material.GLASS);
           }
 
-          this.MainWorld.getBlockAt(x, this.LowestY + 2, z).setType(Material.LEGACY_WOOD);
+          this.MainWorld.getBlockAt(x, this.LowestY + 2, z).setType(Material.BIRCH_PLANKS);
         }
 
-        this.MainWorld.getBlockAt(x, this.LowestY + 3, z).setType(Material.LEGACY_WOOD);
+        this.MainWorld.getBlockAt(x, this.LowestY + 3, z).setType(Material.BIRCH_PLANKS);
       }
     }
 
@@ -888,9 +901,9 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       for (int z = -VillagerInnerWoodStart; z <= VillagerInnerWoodStart; ++z) {
         if (Math.abs(x) == VillagerInnerWoodStart || Math.abs(z) == VillagerInnerWoodStart) {
           if (Math.abs(x) == 1 || Math.abs(z) == 1) {
-            this.MainWorld.getBlockAt(x, this.LowestY + 0, z).setType(Material.LEGACY_WOOD);
-            this.MainWorld.getBlockAt(x, this.LowestY + 1, z).setType(Material.LEGACY_WOOD);
-            this.MainWorld.getBlockAt(x, this.LowestY + 2, z).setType(Material.LEGACY_WOOD);
+            this.MainWorld.getBlockAt(x, this.LowestY + 0, z).setType(Material.BIRCH_PLANKS);
+            this.MainWorld.getBlockAt(x, this.LowestY + 1, z).setType(Material.BIRCH_PLANKS);
+            this.MainWorld.getBlockAt(x, this.LowestY + 2, z).setType(Material.BIRCH_PLANKS);
           }
         }
       }
@@ -920,9 +933,9 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       for (int z = -VillagerInnerWoodStart; z <= VillagerInnerWoodStart; ++z) {
         if (Math.abs(x) == VillagerInnerWoodStart || Math.abs(z) == VillagerInnerWoodStart) {
           if (Math.abs(x) == 1 || Math.abs(z) == 1) {
-            this.MainWorld.getBlockAt(x, this.LowestY + 0, z).setType(Material.LEGACY_WOOD);
-            this.MainWorld.getBlockAt(x, this.LowestY + 1, z).setType(Material.LEGACY_WOOD);
-            this.MainWorld.getBlockAt(x, this.LowestY + 2, z).setType(Material.LEGACY_WOOD);
+            this.MainWorld.getBlockAt(x, this.LowestY + 0, z).setType(Material.BIRCH_PLANKS);
+            this.MainWorld.getBlockAt(x, this.LowestY + 1, z).setType(Material.BIRCH_PLANKS);
+            this.MainWorld.getBlockAt(x, this.LowestY + 2, z).setType(Material.BIRCH_PLANKS);
           } else if (x != 0 && z != 0) {
             Location l = new Location(this.MainWorld, x + 0.5, this.LowestY, z + 0.5);
 
