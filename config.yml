@@ -1,0 +1,62 @@
+# How long the days
+seconds-per-day:  460
+
+# Various distances out for our spawn area and how far towers can shoot
+spawn-radius: 25
+build-radius: 12
+tower-radius: 20
+
+# Controls how many emeralds we get per wave
+# The constant is how many we get regardless of wave number (eg always at least 2)
+# The linear and exponential portions are based on the wave number
+# The boss bonus is a multiplier (2 means double)
+emeralds-constant:    1
+emeralds-linear:      0.22
+emeralds-exponential: 0.35
+emeralds-boss-bonus:  2
+
+# The waves that we'll have to fight against
+# Each wave can contain multiple types of enemies
+days:
+    - type:     REST
+      message:  Day 1 - Start gathering resources!
+      
+    - type:     REST
+      message:  Day 2 - Build walls, towers, and weaponry
+      
+    - type:     REST
+      message:  Day 3 - Be vigilant. This is your last day
+    
+    - type:     NORMAL
+      name:     Wither Skeleton
+      enemies:
+        - enemy:          WITHER_SKELETON
+          armor:          NONE
+          weapon:         SWORD
+          initial-amount: 2
+          per-player:     4
+          per-difficulty: 2
+          speed-scale:    1
+          
+    - type:     NORMAL
+      name:     Super Creeper
+      enemies:
+        - enemy:          SUPER_CREEPER
+          armor:          NONE
+          weapon:         NONE
+          initial-amount: 2
+          per-player:     4
+          per-difficulty: 2
+          speed-scale:    1.1
+          buffs: [DAMAGE_RESISTANCE, JUMP]
+
+    - type:     REST
+      message:  You have one extra day before the attackers return
+    
+    - type:     BOSS
+      name:     Wither Boss
+      enemies:
+        - enemy:          WITHER
+          initial-amount: 1
+          per-player:     0.1   # One extra per 10 players
+          per-difficulty: 0

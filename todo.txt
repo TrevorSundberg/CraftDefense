@@ -1,0 +1,325 @@
+DONE - Don't allow lava buckets to be poured on the ground (instantly turn to cobble)
+DONE - No flowing water (only standing water...) - or maybe just no placing water
+DONE - Villagers have to be kept in a pen of some sort
+DONE - Monsters should be able to break walls if they cannot path find
+DONE - The main arena Will be a large flat stone ground (clear out the area)
+DONE - Fenced in villagers
+DONE - Keep the villagers alive
+DONE - If they all die, then you lose
+DONE - Fast day nights (waves at night)
+DONE - Three days to build (initial time)
+DONE - Ideally, monsters don't spawn at day... maybe
+DONE - Hardcore optional
+DONE - Passive mobs still spawn, maybe extra
+DONE - Difficulty based on server difficulty
+DONE - When all villagers die, kill all players
+DONE - Only on the first spawn, every player starts with a bow, 64 arrows, a stone sword, and a chunk of meat
+DONE - Every spawn after that only gives you an apple and stone sword
+DONE - Place sand down near large drops
+DONE - Two blocks below control it
+DONE - Iron    - 1
+DONE - Gold    - 2
+DONE - Diamond - 3
+DONE - Max level is 6 (two diamond blocks)
+DONE - Iron golems / Snow men
+DONE - Unmanned arrow towers
+DONE - Dispensers on top
+DONE - Lava bucket inside to get flaming arrows
+DONE - Arrow
+DONE - Lightning (Lapis Lazuli)
+DONE - Every player also spawns with a rules / commands book
+DONE - Manned arrow towers
+DONE - Stone pressure plate on top
+DONE - When standing on a manned tower, for every level of the tower you get 1 extra arrow fired
+DONE - Get emeralds per wave
+DONE - Don't let AI break water blocks
+DONE - Change villager types (randomize)
+DONE - Double fence around the house
+DONE - Kill all leftover ai at day
+DONE - House in the middle for villagers
+DONE - Don't give extra stuff on every join
+DONE - Double layers of bedrock (no attacking from below)
+DONE - Fix the stupid arrow tower (faster too, closest enemy)
+DONE - Every enemy should have a small chance of randomly dropping redstone or 2x string
+DONE - Gun powder - Exploding arrow towers
+DONE - Make the max level 8 - (Iron    1) - (Gold    2) - (Emerald 3) - (Diamond 4)
+DONE - Ocellot towers - raw or cooked fish, tamed towards owner of tower
+DONE - Arrows shot via manual towers now all have the same velocity
+DONE - Base our 'Random' generator off the world seed
+DONE - Teleport to the centers of the portals, and keep rotation
+DONE - Play an effect when we remove all enemies (wave over)
+DONE - Make the siege path not so long (32)
+DONE - Probably get rid of the dropping gravel (can't make drops anymore)
+DONE - Prevent ambient wolf spawn (since they are used in a wave, gets awkward)
+DONE - Wool block way-gates
+DONE - We may even spawn protect everything below the tunnel, so they can't make drops
+DONE - Don't make the path just stop right at the edge, make it go in a little bit
+DONE - Spawn extra ambient mobs
+DONE - Make bats and wolfs not ambiently spawn
+DONE - Bats drop coal
+DONE - Orient dispensers to face direction of shooting - Or make them spin :P
+DONE - Magma cubes, slimes, and silverfish need special ai (ghasts too?, maybe even wither)
+DONE - Possibly custom speeds, giants move too slow
+DONE - Make the villager area have one main entrance
+DONE - A fence will directly surround the villagers
+DONE - You can open a gate and walk in, then trade with each villager
+DONE - State the number of lives (villagers) on join, as well as the 'message of the day / wave' and general goal of the game
+DONE - Test creating a teleporter
+DONE - Test destroying a teleporter
+DONE - Test teleporting (multiple)
+DONE - Test ambient wolf spawn and wolf wave
+DONE - The YouWin screen looks silly
+DONE - Test arrow tower closest enemy
+DONE - Test arrow speed from manual tower
+DONE - Test redstone string mob drops
+DONE - Test snow balls
+DONE - Test cannon tower
+DONE - Test bedrock/stone (look at it)
+DONE - Test ocelot towers (below this is V2)
+DONE - fix the nudging crap for the first player - make world spawn location at 0 instead of spawn 
+DONE - make villagers sit still
+DONE - fix text to use better color codes
+DONE - make wave messages better
+DONE - add 1 minute warning to end of day/enemy spawn timer
+DONE - add 5 second countdown warning to enemy spawn
+DONE - add /current command to get the current wave
+DONE - add /next to get the next wave (needs to print out if it's a rest/boss wave)
+DONE - encourage more enemy drops - either 100% and drop all the time, or just increase drops
+DONE - make destroyed walls have a chance of dropping (50%? configurable)
+DONE - add /boss /rest commands to figure out wave types
+DONE - make the bottom start off as stone or clay
+DONE - added anvil in the middle
+DONE - make it so enemies don't stream out as quickly - make it a wave options, burst mode! (siege)
+DONE - make it so enemies don't spawn in walls of siege path
+DONE - add adminium wall down the enemy spawn path (just 2 tall)
+DONE - make enemies not hit through walls, it's dumb - smaller radius possibly too
+DONE - fix wither boss - make it easier, or just tell the user to 'survive'
+DONE - fix 'giant' boss - is it even a good boss to fight? not sure...
+DONE - Make wave spawn numbers into doubles (we cast to int, but it allows for more fine tuning!)
+DONE - move siege path walls over by one (to be outside the lane)
+DONE - adjust ghast ai and bat ai
+DONE - Bug where nether brick was eaten away...!  - attempt to respawn netherbick and villager house twice (once at plugins start, once at init)
+DONE - post pass clear above the nether area (tree parts still remain?)
+DONE - TELEPORTERS BROKEN!!!! WHAT
+DONE - don't allow friendly fire between mobs
+DONE - Change player maps to uuid or name
+DONE - More warning timers (2 min, 30 second, 10 second)
+DONE - Make sure warning timers are valid for day length
+DONE - Refactor 'managers' to be event listeners instead, just register them
+DONE - Make a skip to wave for testing
+DONE - Make the day night system handle task scheduling
+DONE - add delays to when those enemies come out, can do some very interesting stuff!
+DONE - lightning strike wave
+DONE - sky-fall (anvilles or meteors) wave
+DONE - arrow barrage wave
+DONE - turn weather off permanantly
+DONE - slime wave should be super increased
+DONE - make mobs not attack each other (witches, skeletons, etc)
+DONE - make netherbrick on siege path indestructable or regenerate (creeper explosions)
+DONE - lower super creeper wave
+DONE - Fire-wall exploit - Especially with nether brick - Make fire go out quickly in spawn area
+DONE - Adminium all around the base so we can't exploit water
+DONE - Check on dispenser with lava/water exploit (fixed)
+DONE - combine lightning into another wave
+DONE - possibly restrict the amount of gun powder dropped, tnt exploit!
+DONE - make stepping on netherbrick not burn you (only on siege path... actually just being above siege path should burn you.. maybe?)
+DONE - make enemy removal more dramatic
+DONE - Snow should get destroyed immediately by enemies
+DONE - Add new block defense types (with different break chances)
+DONE - More blacksmith villagers (they are awesome!)
+DONE - increase bats slightly
+DONE - increase wither skeleton wave
+DONE - increase blaze wave (or combine it with magma cubes)
+DONE - increase zombie pigmen wave (very hard)
+DONE - reduce witch wave
+DONE - make 2 and 1 minute warnings even more visible - possibly add a sound
+DONE - bats should drop xp, a little
+DONE - remove or combine acme wave... it's stupid
+DONE - harder towards the end
+DONE - explicitly lay-out which types of villagers we want to spawn (more blacksmiths)
+DONE - iron golems to catch fire too on siege path - also snowmen
+DONE - start adding weapons
+DONE - a mechanic to turn anything into XP - should be rate limited though, of some sort
+DONE - Plays effect when it creates xp bottle
+DONE - make buckets of water and lava only usable below a z-value
+DONE - destroy all water and lava above a z-value (to prevent exploits)
+DONE - make ice only turn into water below a z-value
+DONE - slightly reduce obsidian effectiveness (break slightly easier)
+DONE - Every item should get a value (with a default fallback value) - Needs to be somewhat based on what we do in game / rarity, ideally data driven
+DONE - prevent infinite snow exploit (or just make it not useful somehow) - make snow dig slowly
+DONE - if teleporter blocks get destroyed by something other than people, then they're broken (validate them)
+DONE - make sure ender dragon only aims for players
+DONE - Add armor / weapons to waves
+DONE - move create effect to center of the block CANT BE DONE??? Tried +0.5
+DONE - make lightning, arrows, and anvils occasionally target players
+DONE - Handle friendly fire for ghasts - Fireballs are probably entities, which is why the friendly fire check isnt' working I think
+DONE - Remove the entire concept of wave type (rests are just empty waves...)
+DONE - Remove 'Jockey' as an enemy, instead make it so we can generically attempt to jockey any creature - Warn if it fails
+DONE - Give the player infinite torches (config option)
+DONE - refactor hostile control and targeting into another class - AI update ticks, all special cases such as bat, wither, etc
+DONE - make all non hostiles catch fire on the siege path?
+DONE - track enemies that we create vs all ambient mobs
+DONE - any type of mob to be used as a wave type - arbitrarily damage players and villagers
+DONE - Anvilles are broken (spawn at player when specific targeting)
+DONE - Make infinite torches craftable + separate into manager (its own plugin basically, fix any loose ends)
+DONE - Handle speed scale
+DONE - Handle damage scale
+DONE - Handle immunities
+DONE - Handle only damaged by
+DONE - Get a local file opening with json
+
+Add enemy buffs to format
+Separate out armor and all equipment slots (let user customize)
+ - Still make simple slots to fill out 'full armor set'
+
+Customized loot per enemy wave
+Customized names (overhead)
+
+Customize initial loot
+
+You must kill waves before day can come (true/false flag on wave)
+
+Transfer current config settings over to json
+
+Config should control the world setup
+ - fixed seed is optional
+ - can even control what types of worlds are created + generators
+
+Fireworks after beating the game (just test fireworks using a command, to test ending use goto command)
+ - make one of those songs play
+
+Remove 'how to play book', instead add special /cd-help [1-9] command
+ - Make all commands /cd
+ - Include suggestions like battlements
+ - Also building main storage down below the ground to avoid ender dragons + buckets work
+ - Mining obsidian
+ - Include breakable values of different blocks (eg cooked stone)
+ - Also include disenchantment table and values
+
+make mob properties - speed, damage, immunities, only killable when, etc (override or scalars)
+ - immunities could also be to certain types of swords
+ - also can restrict 'only damage from fire, only damage from wooden swords, only damaged by punching, etc'
+
+Make it so you can fill an exp bottle (poor exchange rate, but sacrifice!)
+
+make pistons not able to push blocks over the siege path
+ - or push the siege path back (adminium stops pushing blocks)
+ - or make pistons not really work
+ - or just auto clear the path before and after we run
+
+reduce damage done by iron golemns slightly
+
+handle all mob friendly fire (snowballs, arrows, blaze charges, its another entity!)
+
+have the game joinable before running
+ - lock the player out?
+
+detect if the ocean is at 0,0 (if so, reroll the world or change the spawn location?)
+ - server.unloadWorld - delete it, reroll
+ - config item for 'minimum-land' - set to 0 to allow all ocean, generally never set to 1 (0.2 default)
+
+make random patches in nether into soul sand
+plant netherwart on soul sand (block populator)
+
+legit pause? timescale mostly works (cooking...)
+
+config option to control weather
+
+Make individual waves able to say 'just target players' or 'just target villagers' / both, etc (add enum, default to BOTH)
+
+boolean option for villager friendly fire in config
+
+If enemies go outside, teleport them back in (maybe a little padding, but needs to include siege path and spawn area)
+ - or make them retarget another player
+
+All enemies killed message - CAREFUL - we don't want 'all killed' if we're slowly spawning them in
+ - We'll consider rewarding the player when all enemies are killed, but for right now leave the award logic in the same place
+ - Number of AIs left to kill (only when there's like 3... 2... 1...)
+
+For an example in more customization of enemies:
+ - http://dev.bukkit.org/bukkit-plugins/zarena/pages/custom-entity-yaml-files/
+
+Spawn starting area from schematic
+
+Add perk system
+ - Bought with emeralds, redstone, coal (precious materials) + xp
+ - Double jump
+ - Fast Runner
+ - Lightning Shot
+ - Lunge
+ - Heavy Armor (extra fire damage)
+
+Add normalized max duration to enemy waves
+
+Get config fully setup
+ - full wave configuration
+ - figure out which constants should be exposed to config file / expose them
+ - add the destructable block defense values (from hostile mobs)
+
+Boss waves should pause day until done - or change timescale, or something...
+ - An option that says the night will wait until all enemies are killed
+
+Make iron golemn wave, snowman wave (snowballs!), cat wave, chicken wave, mooshroom cow wave, etc
+
+- Make the plugin work in a server (create new worlds for the plugin)
+ - server.createWorld - just create a normal world and a nether, based on the string passed in
+ - one game at a time, players must have nothing in inventory
+ - once game is over, print out that it's over (but don't let recreation yet while running)
+ - kick all players back to normal world (ideally same places)
+ - don't allow rerunning while game in progress
+ - force stop game command (with permissions I guess)
+
+Ability for save / reload?
+
+setup command permissions
+
+make bat dropped xp a config item
+
+More config options:
+ - Hardcore
+ - Ambient mob spawning
+
+*******************************************************************
+From old version:
+Manual towers constructed differently - A dispenser + pressure plate
+ - meant to sit directly on the ground where the attackers come from
+ 
+Other potential types of towers
+ - Teleporter randomly teleports an enemy (put Ender pearl into dispenser)
+ - Shoots pearl out, if it hits, it teleports that enemy back to the start
+
+Shot types
+ - Any type of potion will be shot at the enemy (if negative)
+ - Any type of potion will be shot at the players (if positive)
+
+---------------------------------------------------------------------------------------------
+
+# Start a game of craft defense
+# SeedString is optional, omitting means use a randomly generated seed
+# GameType is optional, omitting will choose the first game type defined in the config
+# If cd-start command is issued and a game is running, the game will restart
+# This will also overwrite any save data or saved worlds
+/cd-start [SeedString] [GameType]
+
+# Restarts the world and waves with the current seed and game type
+/cd-restart
+
+# Shuts down the current running game of Craft Defense
+# Also deletes any existing world data created by Craft Defense
+/cd-stop
+
+/cd-save
+
+# Loads an existing map along with wave data
+/cd-load
+
+# Joins the existing game of Craft Defense (or warns you if no game is running, to use /cd-start)
+# The player must have an empty inventory and no armor in order to join
+/cd-join
+
+# Leaves a game of Craft Defense and teleports you back to
+# your last known position, or the spawn point in the main world
+/cd-leave
+
+It would be somewhat nice if we could reboot a plugin / reload save data and keep playing
+

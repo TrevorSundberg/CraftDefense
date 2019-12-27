@@ -1,0 +1,40 @@
+main: trevorsundberg.CraftDefense
+name: CraftDefense
+version: 1.0
+author: Trevor Sundberg
+description: A wave based tower defense where the player try to defend the villagers.
+load: POSTWORLD
+commands:
+   cd-save:
+      description: Saves the current game (can be reloaded later)
+      usage: /<command> Name
+   cd-load:
+      description: Loads a saved game
+      usage: /<command> Name
+   cd-list:
+      description: Lists enemies
+      usage: /<command>
+   cd-timescale:
+      description: Sets the time-scale of the world.
+      usage: /<command> [0-1]
+   cd-goto:
+      description: Skips ahead to a wave / time of day.
+      usage: /<command> WaveNumber.TimeOfDayNormalized
+   cd-debug:
+      description: Gives the player a bunch of goodies to test out CraftDefense.
+      usage: /<command>
+   cd-nudge:
+      description: Shifts the player up a bit if the player gets stuck.
+      usage: /<command>
+   cd-current:
+      description: Lets you know what the current wave.
+      usage: /<command>
+   cd-next:
+      description: Lets you know which wave is coming next.
+      usage: /<command>
+   cd-rest:
+      description: Lets you know which of the remaining waves will be rest waves
+      usage: /<command>
+   cd-boss:
+      description: Lets you know which of the remaining waves will be boss waves
+      usage: /<command>
