@@ -167,10 +167,10 @@ public class ExperienceGeneratorManager implements Listener {
   }
 
   public static boolean isBlockOurType(Block block) {
-    if (block.getState() instanceof InventoryHolder) {
+    if (block.getType() == Material.DROPPER && block.getState() instanceof InventoryHolder) {
       List<MetadataValue> list = block.getMetadata("craftdefense_type");
       if (list.size() == 1) {
-        return list.get(0).asString() == DisplayName;
+        return list.get(0).asString().equals(DisplayName);
       }
     }
     return false;
@@ -180,7 +180,7 @@ public class ExperienceGeneratorManager implements Listener {
   public void onBlockPlace(BlockPlaceEvent event) {
     Block block = event.getBlock();
 
-    if (event.getItemInHand().getItemMeta().getDisplayName() == DisplayName
+    if (event.getItemInHand().getItemMeta().getDisplayName().equals(DisplayName)
         || ExperienceGeneratorManager.isBlockOurType(block)) {
       ExperienceGenerator table = new ExperienceGenerator();
       table.Plugin = this.Plugin;
