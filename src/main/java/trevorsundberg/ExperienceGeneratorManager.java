@@ -104,7 +104,7 @@ public class ExperienceGeneratorManager implements Listener {
         if (stack == null || stack.getAmount() == 0)
           continue;
 
-        if (stack.getType() == Material.LEGACY_EXP_BOTTLE)
+        if (stack.getType() == Material.EXPERIENCE_BOTTLE)
           continue;
 
         float xpGain = getValueForSingleItem(stack);
@@ -127,7 +127,7 @@ public class ExperienceGeneratorManager implements Listener {
       while (table.AccumulatedAmount >= 1.0f) {
         // Attempt to add an experience bottle to the experience generator
         HashMap<Integer, ItemStack> unstoredValues = tableInventory
-            .addItem(new ItemStack(Material.LEGACY_EXP_BOTTLE, 1));
+            .addItem(new ItemStack(Material.EXPERIENCE_BOTTLE, 1));
 
         // An empty or null hash map means the xp bottle was added
         if (unstoredValues == null || unstoredValues.isEmpty()) {
@@ -226,7 +226,7 @@ public class ExperienceGeneratorManager implements Listener {
     this.ValuesPerMaterial.put(Material.ENCHANTED_BOOK, 2.0f);
     this.ValuesPerMaterial.put(Material.ENCHANTING_TABLE, 30.0f);
     this.ValuesPerMaterial.put(Material.ENDER_CHEST, 20.0f);
-    this.ValuesPerMaterial.put(Material.LEGACY_EXP_BOTTLE, 0.0f);
+    this.ValuesPerMaterial.put(Material.EXPERIENCE_BOTTLE, 0.0f);
     this.ValuesPerMaterial.put(Material.LEGACY_EYE_OF_ENDER, 4.0f);
     this.ValuesPerMaterial.put(Material.FERMENTED_SPIDER_EYE, 2.0f);
     this.ValuesPerMaterial.put(Material.GLOWSTONE, 8.0f);
