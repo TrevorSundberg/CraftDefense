@@ -18,12 +18,14 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Egg;
+import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.entity.ThrownPotion;
+import org.bukkit.entity.EnderDragon.Phase;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -370,6 +372,20 @@ public class AttackerManager implements Listener {
           creature.setTarget(attacker.Target);
         }
 
+        if (e instanceof EnderDragon) {
+          EnderDragon dragon = (EnderDragon) e;
+          dragon.setAI(true);
+          switch (dragon.getPhase()) {
+          case HOVER:
+          case FLY_TO_PORTAL:
+          case LAND_ON_PORTAL:
+          case LEAVE_PORTAL:
+            dragon.setPhase(Phase.STRAFING);
+            break;
+          default:
+          }
+        }
+
         // Really poor path finding, for now...
         if (true) {
           double moveSpeed = AiDefaultSpeed;
@@ -378,6 +394,8 @@ public class AttackerManager implements Listener {
           if (e.getType() == EntityType.BAT) {
             moveSpeed = 0.3;
             yOffset = 1;
+          } else if (e.getType() == EntityType.ENDER_DRAGON) {
+            moveSpeed = 0;
           } else if (e.getType() == EntityType.GHAST) {
             moveSpeed = 0.24;
             yOffset = 12;
@@ -395,17 +413,19 @@ public class AttackerManager implements Listener {
             moveSpeed = 0.19;
           }
 
-          moveSpeed *= attacker.Wave.SpeedScale;
+          if (moveSpeed != 0) {
+            moveSpeed *= attacker.Wave.SpeedScale;
 
-          Vector vel = e.getVelocity();
-          vel = vel.multiply(0.993);
-          Location current = e.getLocation();
-          Vector towardTarget = new Vector(targetPos.getX() - current.getX(),
-              (targetPos.getY() - current.getY() + yOffset) * 0.2, targetPos.getZ() - current.getZ());
-          towardTarget = towardTarget.normalize();
-          towardTarget = towardTarget.multiply(moveSpeed);
+            Vector vel = e.getVelocity();
+            vel = vel.multiply(0.993);
+            Location current = e.getLocation();
+            Vector towardTarget = new Vector(targetPos.getX() - current.getX(),
+                (targetPos.getY() - current.getY() + yOffset) * 0.2, targetPos.getZ() - current.getZ());
+            towardTarget = towardTarget.normalize();
+            towardTarget = towardTarget.multiply(moveSpeed);
 
-          e.setVelocity(vel.add(towardTarget));
+            e.setVelocity(vel.add(towardTarget));
+          }
         }
 
         // If the entity can't normally attack on its own, then we need to deal fake
