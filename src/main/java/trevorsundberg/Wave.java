@@ -171,7 +171,7 @@ public class Wave {
       if (weapon == WeaponType.BOW) {
         e.setItemInMainHand(new ItemStack(Material.BOW));
       } else if (weapon == WeaponType.WOODEN_SWORD) {
-        e.setItemInMainHand(new ItemStack(Material.LEGACY_WOOD_SWORD));
+        e.setItemInMainHand(new ItemStack(Material.WOODEN_SWORD));
       } else if (weapon == WeaponType.STONE_SWORD) {
         e.setItemInMainHand(new ItemStack(Material.STONE_SWORD));
       } else if (weapon == WeaponType.IRON_SWORD) {
