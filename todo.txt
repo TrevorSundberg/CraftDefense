@@ -175,11 +175,10 @@ DONE - Villagers won't trade
 DONE - Pathing is kinda bad
 DONE - Witches too hard
 DONE - Infinite torch (check and replace every frame)
+DONE - Save villager positions and then teleport them to the same place every update
+DONE - Check if villager are invalid or dead on each update and count them as killed
 
 Fix spawn in ground bug
-Villages can dissapear, still alive but...?
- - Save their positions and then teleport them to the same place every update
- - Check if they are invalid or dead on each update and count them as killed
 Turn more blocks into stone
 Make mobs push each other away or spread out (collision?)
 Big giant zombie does nothing

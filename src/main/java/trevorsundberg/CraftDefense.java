@@ -751,6 +751,11 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       public void run() {
         if (self.isEnabled() == false)
           return;
+        for (VillagerInfo info : self.Villagers.values()) {
+          if (info.Villager.isDead() || info.Villager.isValid() == false) {
+            self.removeVillager(info.Villager);
+          }
+        }
         self.villagerImmobilization();
         self.disableWeather();
         self.putOutFires();
@@ -1744,40 +1749,43 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
 
     // If this entity is one of the original villagers...
     if (this.Villagers.containsKey(e)) {
-      // Remove the villager from the list
-      this.Villagers.remove(e);
+      this.removeVillager((Villager) e);
+    }
+  }
 
-      // If a player killed the villager...
-      Villager v = (Villager) e;
-      Entity killer = v.getKiller();
-      if (killer instanceof Player) {
-        this.getServer()
-            .broadcastMessage(Text.Red + "*** " + v.getKiller().getName() + " killed a villager, watch it! ***");
+  private void removeVillager(Villager villager) {
+    // Remove the villager from the list
+    this.Villagers.remove(villager);
+
+    // If a player killed the villager...
+    Entity killer = villager.getKiller();
+    if (killer instanceof Player) {
+      this.getServer()
+          .broadcastMessage(Text.Red + "*** " + villager.getKiller().getName() + " killed a villager, watch it! ***");
+    }
+
+    // Tell everyone that the villager died
+    this.getServer().broadcastMessage(Text.DarkRed + "*** " + this.Villagers.size() + " villagers left! ***");
+
+    // If all the villagers are dead...
+    if (this.Villagers.size() == 0) {
+      this.getServer().broadcastMessage(Text.DarkRed + "***  GAME OVER ***");
+
+      for (Player player : this.getServer().getOnlinePlayers()) {
+        player.getWorld().createExplosion(player.getLocation(), 20.0f);
+        player.damage(10000);
       }
 
-      // Tell everyone that the villager died
-      this.getServer().broadcastMessage(Text.DarkRed + "*** " + this.Villagers.size() + " villagers left! ***");
-
-      // If all the villagers are dead...
-      if (this.Villagers.size() == 0) {
-        this.getServer().broadcastMessage(Text.DarkRed + "***  GAME OVER ***");
-
-        for (Player player : this.getServer().getOnlinePlayers()) {
-          player.getWorld().createExplosion(player.getLocation(), 20.0f);
-          player.damage(10000);
-        }
-
-        final CraftDefense self = this;
-        this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-          public void run() {
-            for (Player player : self.getServer().getOnlinePlayers()) {
-              player.kickPlayer("GAME OVER");
-            }
+      final CraftDefense self = this;
+      this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+        public void run() {
+          for (Player player : self.getServer().getOnlinePlayers()) {
+            player.kickPlayer("GAME OVER");
           }
-        }, 0, Utilities.TicksPerSecond);
-        // Turn off the plugin entirely
-        this.shutDown();
-      }
+        }
+      }, 0, Utilities.TicksPerSecond);
+      // Turn off the plugin entirely
+      this.shutDown();
     }
   }
 
