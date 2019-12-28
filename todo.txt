@@ -174,8 +174,9 @@ DONE - Fix fence positions
 DONE - Villagers won't trade
 DONE - Pathing is kinda bad
 DONE - Witches too hard
+DONE - Infinite torch (check and replace every frame)
 
-Infinite torch (check and replace every frame)
+Fix spawn in ground bug
 Villages can dissapear, still alive but...?
  - Save their positions and then teleport them to the same place every update
  - Check if they are invalid or dead on each update and count them as killed

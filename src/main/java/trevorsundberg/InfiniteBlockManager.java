@@ -9,20 +9,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
-import org.bukkit.event.inventory.InventoryPickupItemEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
 public class InfiniteBlockManager implements Listener {
   Plugin Plugin;
   HashSet<Material> BlockTypes;
+
+  private final String Prefix = "Infinite ";
 
   void initialize(Plugin plugin, HashSet<Material> blockTypes) {
     this.Plugin = plugin;
@@ -31,20 +29,36 @@ public class InfiniteBlockManager implements Listener {
     PluginManager manager = plugin.getServer().getPluginManager();
     manager.registerEvents(this, plugin);
 
-    for (Player player : plugin.getServer().getOnlinePlayers()) {
-      this.forceOneOfEachBlock(player);
+    final InfiniteBlockManager self = this;
+    plugin.getServer().getScheduler().runTaskTimer(plugin, new Runnable() {
+      @Override
+      public void run() {
+        if (plugin.isEnabled() == false)
+          return;
+        for (Player player : plugin.getServer().getOnlinePlayers()) {
+          self.forceOneOfEachBlock(player);
+        }
+      }
+    }, 1, 1);
+  }
+
+  private void updateName(ItemStack stack) {
+    ItemMeta meta = stack.getItemMeta();
+    if (meta.getDisplayName() == null || meta.getDisplayName().length() == 0) {
+      meta.setDisplayName(Prefix + stack.getType().toString().replace("_", " ").toLowerCase());
     }
+    stack.setItemMeta(meta);
   }
 
-  @SuppressWarnings("deprecation")
-  public void forceOneOfEachBlock(Player p) {
-    this.forceOneOfEachBlock(p.getInventory());
-    p.updateInventory();
-  }
-
-  public void forceOneOfEachBlock(Inventory inv) {
+  private void forceOneOfEachBlock(Player p) {
     HashSet<Material> foundMaterials = new HashSet<Material>();
 
+    Material cursorType = p.getItemOnCursor().getType();
+    if (this.BlockTypes.contains(cursorType)) {
+      foundMaterials.add(cursorType);
+    }
+
+    Inventory inv = p.getInventory();
     for (int i = 0; i <= inv.getSize(); ++i) {
       ItemStack item = inv.getItem(i);
       if (item == null)
@@ -53,8 +67,11 @@ public class InfiniteBlockManager implements Listener {
       Material itemType = item.getType();
       if (this.BlockTypes.contains(itemType)) {
         if (foundMaterials.contains(itemType) == false) {
-          item.setAmount(1);
-          inv.setItem(i, item);
+          if (item.getAmount() != 1) {
+            item.setAmount(1);
+            this.updateName(item);
+            inv.setItem(i, item);
+          }
           foundMaterials.add(itemType);
         } else {
           // Remove any extra infinite items in their inventory
@@ -63,33 +80,17 @@ public class InfiniteBlockManager implements Listener {
       }
     }
 
-    // Search through all the block types we support, and if we didn't find one then
+    // Search through torch no visualall the block types we support, and if we
+    // didn't find one then
     // give it to the player
     Iterator<Material> blockTypes = this.BlockTypes.iterator();
     while (blockTypes.hasNext()) {
       Material mat = blockTypes.next();
       if (foundMaterials.contains(mat) == false) {
         ItemStack s = new ItemStack(mat, 1);
+        this.updateName(s);
         inv.addItem(s);
       }
-    }
-  }
-
-  @EventHandler
-  public void onPlayerSpawn(PlayerRespawnEvent event) {
-    this.forceOneOfEachBlock(event.getPlayer());
-  }
-
-  @EventHandler
-  public void onPlayerJoin(PlayerJoinEvent event) {
-    this.forceOneOfEachBlock(event.getPlayer());
-  }
-
-  @EventHandler
-  public void onBlockPlaced(BlockPlaceEvent event) {
-    ItemStack item = event.getItemInHand();
-    if (this.BlockTypes.contains(item.getType())) {
-      this.forceOneOfEachBlock(event.getPlayer());
     }
   }
 
@@ -100,25 +101,6 @@ public class InfiniteBlockManager implements Listener {
     if (this.BlockTypes.contains(b.getType())) {
       event.setCancelled(true);
       b.setType(Material.AIR);
-    }
-  }
-
-  // Prevent the player from removing infinite items (if enabled)
-  @EventHandler
-  public void onInventoryMoveItem(InventoryMoveItemEvent event) {
-    if (this.BlockTypes.contains(event.getItem().getType()))
-      event.setCancelled(true);
-  }
-
-  // Prevent the player from picking up more items when we already have
-  // 'infinite'
-  @EventHandler
-  public void onInventoryPickupItem(InventoryPickupItemEvent event) {
-    ItemStack item = event.getItem().getItemStack();
-    if (this.BlockTypes.contains(item.getType())) {
-      event.getItem().remove();
-      event.setCancelled(true);
-      this.forceOneOfEachBlock(event.getInventory());
     }
   }
 
