@@ -133,11 +133,11 @@ public class Wave {
     this.Message = message;
   }
 
-  public Wave(String name, EnemyType enemyType, int intensity, int emeralds, int xp) {
+  public Wave(String name, EnemyType enemyType, double intensity, int emeralds, int xp) {
     this(name, enemyType, intensity, emeralds, xp, null);
   }
 
-  public Wave(String name, EnemyType enemyType, int intensity, int emeralds, int xp, String message) {
+  public Wave(String name, EnemyType enemyType, double intensity, int emeralds, int xp, String message) {
     this.AwardedEmeralds = emeralds;
     this.AwardedXp = xp;
     this.Name = name;

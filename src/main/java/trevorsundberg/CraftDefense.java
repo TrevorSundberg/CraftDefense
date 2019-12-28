@@ -111,7 +111,8 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
 
     // Add in wither skeletons, and other waves with armor/swords and
     // different intensities
-    this.Waves.add(new Wave("Zombies", Wave.EnemyType.ZOMBIE, 3, 1, 18, "The Wither King mobilizes his ground forces"));
+    this.Waves
+        .add(new Wave("Zombies", Wave.EnemyType.ZOMBIE, 2.5, 1, 18, "The Wither King mobilizes his ground forces"));
     this.Waves.add(new Wave("Silverfish", Wave.EnemyType.SILVERFISH, 4, 1, 18));
     this.Waves.add(new Wave("Skeletons", Wave.EnemyType.SKELETON, 4, 2, 20));
     this.Waves.add(new Wave("Spiders", Wave.EnemyType.SPIDER, 3, 3, 21));
