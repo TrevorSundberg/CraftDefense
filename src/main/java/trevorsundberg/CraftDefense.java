@@ -277,9 +277,9 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       // Ender Dragon
       {
         Wave.EnemyWave enemyWave = new Wave.EnemyWave();
-        enemyWave.InitialAmount = 1;
-        enemyWave.PerDifficulty = 0.2;
-        enemyWave.PerPlayer = 0.1;
+        enemyWave.InitialAmount = 1.2;
+        enemyWave.PerDifficulty = 0.25;
+        enemyWave.PerPlayer = 0.4;
         enemyWave.Type = Wave.EnemyType.ENDER_DRAGON;
         enemyWave.DelaySeconds = 5;
         wave.EnemyWaves.add(enemyWave);
