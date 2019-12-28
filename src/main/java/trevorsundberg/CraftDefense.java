@@ -1756,6 +1756,14 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
           player.damage(10000);
         }
 
+        final CraftDefense self = this;
+        this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+          public void run() {
+            for (Player player : self.getServer().getOnlinePlayers()) {
+              player.kickPlayer("GAME OVER");
+            }
+          }
+        }, 0, Utilities.TicksPerSecond);
         // Turn off the plugin entirely
         this.shutDown();
       }
