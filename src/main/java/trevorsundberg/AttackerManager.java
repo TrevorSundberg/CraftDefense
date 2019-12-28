@@ -14,14 +14,13 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-//import org.bukkit.craftbukkit.v1_5_R3.entity.CraftCreature;
 import org.bukkit.entity.Animals;
-import org.bukkit.entity.Creature;
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.entity.ThrownPotion;
@@ -358,22 +357,26 @@ public class AttackerManager implements Listener {
       if (attacker.Target != null) {
         Location targetPos = attacker.Target.getLocation();
 
-        if (e instanceof Creature) {
-          Creature creature = (Creature) e;
+        if (e instanceof Mob) {
+          Mob mob = (Mob) e;
 
-          if (creature.getType() == EntityType.WITHER) {
-            // Quickly kill any animal targets
-            if (creature.getTarget() instanceof Animals) {
-              creature.getTarget().damage(1000, creature);
-            }
+          // Quickly kill any animal targets
+          if (mob.getTarget() instanceof Animals) {
+            mob.getTarget().damage(1000, mob);
           }
 
-          creature.setTarget(attacker.Target);
+          mob.setTarget(attacker.Target);
         }
 
-        if (e instanceof EnderDragon) {
+        double moveSpeed = 0;
+        double zScale = 0.2;
+        int yOffset = 0;
+
+        if (e.getType() == EntityType.BAT) {
+          moveSpeed = 0.3;
+          yOffset = 1;
+        } else if (e.getType() == EntityType.ENDER_DRAGON) {
           EnderDragon dragon = (EnderDragon) e;
-          dragon.setAI(true);
           switch (dragon.getPhase()) {
           case HOVER:
           case FLY_TO_PORTAL:
@@ -383,14 +386,11 @@ public class AttackerManager implements Listener {
             break;
           default:
           }
-        }
-
-        double moveSpeed = 0;
-        int yOffset = 0;
-
-        if (e.getType() == EntityType.BAT) {
-          moveSpeed = 0.3;
-          yOffset = 1;
+          if (dragon.getPhase() == Phase.STRAFING) {
+            moveSpeed = 0.28;
+            yOffset = 1;
+            zScale = 0.7;
+          }
         } else if (e.getType() == EntityType.GHAST) {
           moveSpeed = 0.2;
           yOffset = 12;
@@ -415,7 +415,7 @@ public class AttackerManager implements Listener {
           vel = vel.multiply(0.993);
           Location current = e.getLocation();
           Vector towardTarget = new Vector(targetPos.getX() - current.getX(),
-              (targetPos.getY() - current.getY() + yOffset) * 0.2, targetPos.getZ() - current.getZ());
+              (targetPos.getY() - current.getY() + yOffset) * zScale, targetPos.getZ() - current.getZ());
           towardTarget = towardTarget.normalize();
           towardTarget = towardTarget.multiply(moveSpeed);
 

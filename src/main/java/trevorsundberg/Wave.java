@@ -9,11 +9,13 @@ import org.bukkit.World;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Damageable;
+import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Wolf;
+import org.bukkit.entity.EnderDragon.Phase;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
@@ -233,8 +235,13 @@ public class Wave {
       return w.spawnEntity(l, EntityType.CAVE_SPIDER);
     case CREEPER:
       return w.spawnEntity(l, EntityType.CREEPER);
-    case ENDER_DRAGON:
-      return w.spawnEntity(l, EntityType.ENDER_DRAGON);
+    case ENDER_DRAGON: {
+      EnderDragon dragon = (EnderDragon) w.spawnEntity(l, EntityType.ENDER_DRAGON);
+      dragon.setAI(true);
+      dragon.setPhase(Phase.CIRCLING);
+      dragon.resetMaxHealth();
+      return dragon;
+    }
     case ENDERMAN:
       return w.spawnEntity(l, EntityType.ENDERMAN);
     case GHAST:
