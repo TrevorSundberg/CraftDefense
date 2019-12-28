@@ -10,7 +10,6 @@ import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
@@ -478,7 +477,7 @@ public class AttackerManager implements Listener {
     attacker.Wave = wave;
     if (entity instanceof LivingEntity) {
       LivingEntity livingEntity = (LivingEntity) entity;
-      this.TotalMaxHealth += livingEntity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
+      this.TotalMaxHealth += livingEntity.getHealth();
     }
     this.TrackedAttackers.put(entity, attacker);
   }
