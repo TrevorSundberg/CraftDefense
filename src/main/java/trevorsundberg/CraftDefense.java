@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -75,7 +76,14 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
   private int FireOustIndex = 0;
 
   private final ArrayList<Wave> Waves = new ArrayList<Wave>();
-  private final ArrayList<Villager> Villagers = new ArrayList<Villager>();
+
+  private class VillagerInfo {
+    public Villager Villager;
+    public Location Location;
+  }
+
+  private final HashMap<Villager, VillagerInfo> Villagers = new HashMap<Villager, VillagerInfo>();
+
   private final HashSet<UUID> Veterans = new HashSet<UUID>();
 
   private DayTimeManager DayTimeManager;
@@ -953,8 +961,10 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
             villager.setVillagerLevel(3 + this.Rand.nextInt(3));
             villager.setVillagerExperience(Integer.MAX_VALUE);
 
-            // minecart.setPassenger(villager);
-            this.Villagers.add(villager);
+            VillagerInfo info = new VillagerInfo();
+            info.Villager = villager;
+            info.Location = l.clone();
+            this.Villagers.put(villager, info);
             this.AttackerManager.FixedTargets.add(villager);
 
             // make villagers stand over bedrock so they can't fall
@@ -1030,9 +1040,9 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
   }
 
   private void villagerImmobilization() {
-    int villageSize = this.Villagers.size();
-    for (int i = 0; i < villageSize; ++i) {
-      this.Villagers.get(i).setVelocity(new Vector(0.0, 0.0, 0.0));
+    for (VillagerInfo info : this.Villagers.values()) {
+      info.Villager.setVelocity(new Vector(0.0, 0.0, 0.0));
+      info.Villager.teleport(info.Location);
     }
   }
 
@@ -1733,7 +1743,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
     }
 
     // If this entity is one of the original villagers...
-    if (this.Villagers.contains(e)) {
+    if (this.Villagers.containsKey(e)) {
       // Remove the villager from the list
       this.Villagers.remove(e);
 
