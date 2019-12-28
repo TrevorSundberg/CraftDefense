@@ -5,15 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-//import net.minecraft.server.v1_5_R3.EntityCreature;
-//import net.minecraft.server.v1_5_R3.PathEntity;
-//import net.minecraft.server.v1_5_R3.PathPoint;
-
+import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarFlag;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.EnderDragon;
@@ -58,6 +60,8 @@ public class AttackerManager implements Listener {
 
   private CraftDefense Plugin;
 
+  private double TotalMaxHealth = 0;
+
   private class Attacker {
     public Entity Entity;
     public LivingEntity Target;
@@ -69,6 +73,9 @@ public class AttackerManager implements Listener {
   private final HashMap<Entity, Attacker> TrackedAttackers = new HashMap<Entity, Attacker>();
 
   public ArrayList<LivingEntity> FixedTargets = new ArrayList<LivingEntity>();
+
+  public BossBar Bar = Bukkit.createBossBar("Wave", BarColor.PINK, BarStyle.SOLID, BarFlag.CREATE_FOG,
+      BarFlag.DARKEN_SKY, BarFlag.PLAY_BOSS_MUSIC);
 
   public void initialize(final CraftDefense plugin, Random rand) {
     this.Rand = rand;
@@ -236,6 +243,8 @@ public class AttackerManager implements Listener {
   }
 
   public void killAllAttackers() {
+    this.TotalMaxHealth = 0;
+
     for (Attacker attacker : this.TrackedAttackers.values()) {
       final Entity e = attacker.Entity;
 
@@ -311,11 +320,16 @@ public class AttackerManager implements Listener {
         ++i;
     }
 
+    double totalCurrentHealth = 0;
     for (Attacker attacker : this.TrackedAttackers.values()) {
       Entity e = attacker.Entity;
       if (e.isDead())
         continue;
 
+      if (attacker.Entity instanceof LivingEntity) {
+        LivingEntity livingEntity = (LivingEntity) attacker.Entity;
+        totalCurrentHealth += livingEntity.getHealth();
+      }
       // Walk through all fixed targets, if we're next to one, then do damage!
       Location l = e.getLocation();
       for (int j = 0; j < this.FixedTargets.size(); ++j) {
@@ -444,6 +458,17 @@ public class AttackerManager implements Listener {
         }
       }
     }
+
+    if (this.TotalMaxHealth == 0 || totalCurrentHealth == 0) {
+      for (Player player : Bukkit.getOnlinePlayers()) {
+        this.Bar.removePlayer(player);
+      }
+    } else {
+      this.Bar.setProgress(totalCurrentHealth / this.TotalMaxHealth);
+      for (Player player : Bukkit.getOnlinePlayers()) {
+        this.Bar.addPlayer(player);
+      }
+    }
   }
 
   void addAttacker(Entity entity, Wave.EnemyWave wave) {
@@ -451,6 +476,10 @@ public class AttackerManager implements Listener {
     attacker.Entity = entity;
     attacker.StuckPos = entity.getLocation();
     attacker.Wave = wave;
+    if (entity instanceof LivingEntity) {
+      LivingEntity livingEntity = (LivingEntity) entity;
+      this.TotalMaxHealth += livingEntity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
+    }
     this.TrackedAttackers.put(entity, attacker);
   }
 
