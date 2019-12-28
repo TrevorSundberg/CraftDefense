@@ -102,7 +102,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
   private final int SpawnExtraGoodMobTicks = 500;
   private final int GoodMobRadius = 96;
   private final double AttackTimeNormalized = 0.6;
-  private int TicksPerDay = 460 * 20;
+  private int TicksPerDay = 460 * Utilities.TicksPerSecond;
 
   public CraftDefense() {
     this.Waves.add(new Wave("Gather resources"));
