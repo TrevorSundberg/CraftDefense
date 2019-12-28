@@ -172,8 +172,16 @@ DONE - Experience generator doesn't work
 DONE - Infinite torch fix
 DONE - Fix fence positions
 DONE - Villagers won't trade
+DONE - Pathing is kinda bad
+DONE - Witches too hard
 
-Pathing is kinda bad
+Infinite torch (check and replace every frame)
+Villages can dissapear, still alive but...?
+ - Save their positions and then teleport them to the same place every update
+ - Check if they are invalid or dead on each update and count them as killed
+Turn more blocks into stone
+Make mobs push each other away or spread out (collision?)
+Big giant zombie does nothing
 Bad mobs spawn, can we try peaceful?
 Fix anvil setData calls
 

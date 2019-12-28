@@ -209,7 +209,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
     }
     this.Waves.add(new Wave("The attackers need a day to regroup their forces!"));
 
-    this.Waves.add(new Wave("Witches", Wave.EnemyType.WITCH, 3, 3, 32, "The Wither King sends mystical beings"));
+    this.Waves.add(new Wave("Witches", Wave.EnemyType.WITCH, 2, 3, 32, "The Wither King sends mystical beings"));
     this.Waves.add(new Wave("Creepers", Wave.EnemyType.CREEPER, 3, 3, 32, "In the name of the King..."));
     {
       Wave wave = new Wave();
