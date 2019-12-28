@@ -1047,7 +1047,11 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
   private void villagerImmobilization() {
     for (VillagerInfo info : this.Villagers.values()) {
       info.Villager.setVelocity(new Vector(0.0, 0.0, 0.0));
-      info.Villager.teleport(info.Location);
+      Location location = info.Villager.getLocation();
+      Location locked = info.Location.clone();
+      locked.setYaw(location.getYaw());
+      locked.setPitch(location.getPitch());
+      info.Villager.teleport(locked);
     }
   }
 
