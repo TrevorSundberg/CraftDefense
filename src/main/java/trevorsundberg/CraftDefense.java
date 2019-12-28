@@ -1766,6 +1766,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
     this.getServer().getPluginManager().disablePlugin(this);
     this.getServer().getScheduler().cancelTasks(this);
     this.setEnabled(false);
+    this.AttackerManager.killAllAttackers();
   }
 
   @EventHandler
