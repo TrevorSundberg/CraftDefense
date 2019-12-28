@@ -45,6 +45,7 @@ public class Wave {
 
     public double SpeedScale = 1.0;
     public double DamageScale = 1.0;
+    public double AmountScale = 0.8;
     public int HitPoints = 0;
     public boolean OnFire = false;
 

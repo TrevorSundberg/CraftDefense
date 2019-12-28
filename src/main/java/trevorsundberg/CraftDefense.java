@@ -1210,8 +1210,9 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       final Wave.EnemyWave enemyWave = wave.EnemyWaves.get(i);
       int numPlayers = this.getServer().getOnlinePlayers().size();
 
-      int totalSpawns = Math.max(1,
-          (int) (numPlayers * (enemyWave.PerPlayer + difficulty * enemyWave.PerDifficulty) + enemyWave.InitialAmount));
+      double spawnCount = numPlayers * (enemyWave.PerPlayer + difficulty * enemyWave.PerDifficulty)
+          + enemyWave.InitialAmount;
+      int totalSpawns = Math.max(1, (int) (spawnCount * enemyWave.AmountScale));
 
       double normalizedDelay = this.DayTimeManager.convertSecondsToDayNormalizedUnits(enemyWave.DelaySeconds);
       double normalizedTimePerSpawn = this.DayTimeManager
