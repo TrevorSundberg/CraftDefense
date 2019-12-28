@@ -54,7 +54,7 @@ public class AttackerManager implements Listener {
 
   // How close an enemy must be to damage its target
   private final double DamageTargetRadius = 1.1;
-  private final double DamageTargetChance = 0.2;
+  private final double DamageTargetChance = 0.1;
   private Random Rand;
 
   private CraftDefense Plugin;
