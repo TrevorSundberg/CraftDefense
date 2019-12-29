@@ -1901,6 +1901,11 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
           }
         }
       }
+
+      if (event.getCause() == DamageCause.LIGHTNING) {
+        event.setCancelled(true);
+        return;
+      }
       Location l = event.getEntity().getLocation();
       l.getWorld().playEffect(l, Effect.EXTINGUISH, 0);
       l.getWorld().playEffect(l, Effect.GHAST_SHRIEK, 0);

@@ -179,11 +179,15 @@ DONE - Save villager positions and then teleport them to the same place every up
 DONE - Check if villager are invalid or dead on each update and count them as killed
 DONE - Big giant zombie does nothing
 DONE - Fix spawn in ground bug
+DONE - Make villagers immune to lightning
 
 Turn more blocks into stone
 Make mobs push each other away or spread out (collision?)
 Bad mobs spawn, can we try peaceful?
 Fix anvil setData calls
+Reset villager health (or increase)
+Ghasts fly too high
+Award arrows at the end of each round
 
 Add enemy buffs to format
 Separate out armor and all equipment slots (let user customize)
