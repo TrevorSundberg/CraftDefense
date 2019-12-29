@@ -407,6 +407,9 @@ public class AttackerManager implements Listener {
         } else if (e.getType() == EntityType.GHAST) {
           moveSpeed = 0.2;
           yOffset = 12;
+        } else if (e.getType() == EntityType.ELDER_GUARDIAN) {
+          moveSpeed = 0.1;
+          yOffset = 6;
         } else if (e.getType() == EntityType.WITHER) {
           Location witherLocation = e.getLocation();
           double absX = Math.abs(witherLocation.getX());

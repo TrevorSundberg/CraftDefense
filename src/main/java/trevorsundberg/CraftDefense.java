@@ -208,7 +208,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
         enemyWave.InitialAmount = 1;
         enemyWave.PerDifficulty = 0.2;
         enemyWave.PerPlayer = 0.1;
-        enemyWave.Type = Wave.EnemyType.GIANT;
+        enemyWave.Type = Wave.EnemyType.ELDER_GUARDIAN;
         enemyWave.DelaySeconds = 5;
         wave.EnemyWaves.add(enemyWave);
       }

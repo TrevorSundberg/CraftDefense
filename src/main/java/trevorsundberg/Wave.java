@@ -89,7 +89,7 @@ public class Wave {
   }
 
   public enum EnemyType {
-    BAT, BLAZE, CAVE_SPIDER, CREEPER, ENDER_DRAGON, ENDERMAN, GHAST, GIANT, MAGMA_CUBE, PIG_ZOMBIE, SILVERFISH,
+    BAT, BLAZE, CAVE_SPIDER, CREEPER, ELDER_GUARDIAN, ENDER_DRAGON, ENDERMAN, GHAST, MAGMA_CUBE, PIG_ZOMBIE, SILVERFISH,
     SKELETON, SLIME, SPIDER, SUPER_CREEPER, WITCH, WITHER, WITHER_SKELETON, VILLAGER_ZOMBIE, WOLF, ZOMBIE,
   }
 
@@ -236,6 +236,8 @@ public class Wave {
       return w.spawnEntity(l, EntityType.CAVE_SPIDER);
     case CREEPER:
       return w.spawnEntity(l, EntityType.CREEPER);
+    case ELDER_GUARDIAN:
+      return w.spawnEntity(l, EntityType.ELDER_GUARDIAN);
     case ENDER_DRAGON: {
       EnderDragon dragon = (EnderDragon) w.spawnEntity(l, EntityType.ENDER_DRAGON);
       dragon.setAI(true);
@@ -247,8 +249,6 @@ public class Wave {
       return w.spawnEntity(l, EntityType.ENDERMAN);
     case GHAST:
       return w.spawnEntity(l, EntityType.GHAST);
-    case GIANT:
-      return w.spawnEntity(l, EntityType.GIANT);
     case MAGMA_CUBE:
       return w.spawnEntity(l, EntityType.MAGMA_CUBE);
     case PIG_ZOMBIE: {
