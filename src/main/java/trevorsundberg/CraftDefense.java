@@ -43,6 +43,7 @@ import org.bukkit.event.block.BlockFadeEvent;
 import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
@@ -104,6 +105,8 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
   private final int VillagerBooks = 2;
 
   // Tweakable Constants
+  private final boolean FriendlyFirePlayers = false;
+  private final boolean FriendlyFireVillagers = false;
   private final int WarningTimerSeconds = 5;
   private int SpawnRadius = 25;
   private int RecommendedBuildRadius = 12;
@@ -1873,13 +1876,35 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
     // Mobs don't take fall damage (so we can't exploit mobs)
     if (event.getEntityType() != EntityType.PLAYER && event.getCause() == DamageCause.FALL) {
       event.setCancelled(true);
-
+      return;
     }
 
-    if (event.isCancelled() == false && event.getEntityType() == EntityType.VILLAGER) {
+    if (event.getEntity() instanceof Player) {
+      if (!this.FriendlyFirePlayers) {
+        if (event instanceof EntityDamageByEntityEvent) {
+          EntityDamageByEntityEvent entityEvent = (EntityDamageByEntityEvent) event;
+          if (entityEvent.getDamager() instanceof Player) {
+            event.setCancelled(true);
+            return;
+          }
+        }
+      }
+    }
+
+    if (this.Villagers.containsKey(event.getEntity())) {
+      if (!this.FriendlyFireVillagers) {
+        if (event instanceof EntityDamageByEntityEvent) {
+          EntityDamageByEntityEvent entityEvent = (EntityDamageByEntityEvent) event;
+          if (entityEvent.getDamager() instanceof Player) {
+            event.setCancelled(true);
+            return;
+          }
+        }
+      }
       Location l = event.getEntity().getLocation();
       l.getWorld().playEffect(l, Effect.EXTINGUISH, 0);
       l.getWorld().playEffect(l, Effect.GHAST_SHRIEK, 0);
+      return;
     }
   }
 
