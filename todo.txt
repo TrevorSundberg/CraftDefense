@@ -177,11 +177,11 @@ DONE - Witches too hard
 DONE - Infinite torch (check and replace every frame)
 DONE - Save villager positions and then teleport them to the same place every update
 DONE - Check if villager are invalid or dead on each update and count them as killed
+DONE - Big giant zombie does nothing
 
 Fix spawn in ground bug
 Turn more blocks into stone
 Make mobs push each other away or spread out (collision?)
-Big giant zombie does nothing
 Bad mobs spawn, can we try peaceful?
 Fix anvil setData calls
 
