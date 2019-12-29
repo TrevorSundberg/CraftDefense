@@ -213,26 +213,29 @@ public class ExperienceGeneratorManager implements Listener {
 
   private void initializeValues() {
     this.ValuesPerMaterial.put(Material.AIR, 0.0f);
+    this.ValuesPerMaterial.put(Material.ANDESITE, 3.0f);
     this.ValuesPerMaterial.put(Material.BOOKSHELF, 4.0f);
     this.ValuesPerMaterial.put(Material.BUCKET, 2.0f);
     this.ValuesPerMaterial.put(Material.CAULDRON, 2.0f);
-    this.ValuesPerMaterial.put(Material.COAL, 2.0f);
     this.ValuesPerMaterial.put(Material.COAL_ORE, 1.5f);
-    this.ValuesPerMaterial.put(Material.DIAMOND, 6.0f);
+    this.ValuesPerMaterial.put(Material.COAL, 2.0f);
     this.ValuesPerMaterial.put(Material.DIAMOND_BLOCK, 60.0f);
+    this.ValuesPerMaterial.put(Material.DIAMOND, 6.0f);
+    this.ValuesPerMaterial.put(Material.DIORITE, 2.0f);
     this.ValuesPerMaterial.put(Material.DIRT, 0.1f);
     this.ValuesPerMaterial.put(Material.EMERALD_BLOCK, 10.0f);
     this.ValuesPerMaterial.put(Material.EMERALD_ORE, 5.0f);
     this.ValuesPerMaterial.put(Material.ENCHANTED_BOOK, 2.0f);
     this.ValuesPerMaterial.put(Material.ENCHANTING_TABLE, 30.0f);
     this.ValuesPerMaterial.put(Material.ENDER_CHEST, 20.0f);
-    this.ValuesPerMaterial.put(Material.EXPERIENCE_BOTTLE, 0.0f);
     this.ValuesPerMaterial.put(Material.ENDER_EYE, 4.0f);
+    this.ValuesPerMaterial.put(Material.EXPERIENCE_BOTTLE, 0.0f);
     this.ValuesPerMaterial.put(Material.FERMENTED_SPIDER_EYE, 2.0f);
-    this.ValuesPerMaterial.put(Material.GLOWSTONE, 8.0f);
     this.ValuesPerMaterial.put(Material.GLOWSTONE_DUST, 2.0f);
+    this.ValuesPerMaterial.put(Material.GLOWSTONE, 8.0f);
     this.ValuesPerMaterial.put(Material.GOLD_BLOCK, 30.0f);
     this.ValuesPerMaterial.put(Material.GOLD_INGOT, 3.0f);
+    this.ValuesPerMaterial.put(Material.GRANITE, 4.0f);
     this.ValuesPerMaterial.put(Material.GRASS_BLOCK, 0.3f);
     this.ValuesPerMaterial.put(Material.GRAVEL, 0.2f);
     this.ValuesPerMaterial.put(Material.IRON_BLOCK, 20.0f);
@@ -241,14 +244,17 @@ public class ExperienceGeneratorManager implements Listener {
     this.ValuesPerMaterial.put(Material.MELON, 0.1f);
     this.ValuesPerMaterial.put(Material.NETHERRACK, 0.2f);
     this.ValuesPerMaterial.put(Material.OBSIDIAN, 5.0f);
-    this.ValuesPerMaterial.put(Material.QUARTZ, 2.0f);
+    this.ValuesPerMaterial.put(Material.POLISHED_ANDESITE, 5.0f);
+    this.ValuesPerMaterial.put(Material.POLISHED_DIORITE, 4.0f);
+    this.ValuesPerMaterial.put(Material.POLISHED_GRANITE, 6.0f);
     this.ValuesPerMaterial.put(Material.QUARTZ_BLOCK, 20.0f);
-    this.ValuesPerMaterial.put(Material.REDSTONE, 1.5f);
+    this.ValuesPerMaterial.put(Material.QUARTZ, 2.0f);
     this.ValuesPerMaterial.put(Material.REDSTONE_BLOCK, 15.0f);
+    this.ValuesPerMaterial.put(Material.REDSTONE, 1.5f);
     this.ValuesPerMaterial.put(Material.SAND, 0.1f);
+    this.ValuesPerMaterial.put(Material.SNOW_BLOCK, 0.06f);
     this.ValuesPerMaterial.put(Material.SNOW, 0.04f);
     this.ValuesPerMaterial.put(Material.SNOWBALL, 0.01f);
-    this.ValuesPerMaterial.put(Material.SNOW_BLOCK, 0.06f);
     this.ValuesPerMaterial.put(Material.WRITTEN_BOOK, 3.0f);
   }
 }
