@@ -119,6 +119,7 @@ public class Wave {
   public ArrayList<SpecialWave> SpecialWaves = new ArrayList<SpecialWave>();
   public int AwardedEmeralds;
   public int AwardedXp;
+  public int AwardedArrows;
 
   public Wave() {
   }
@@ -141,6 +142,7 @@ public class Wave {
   public Wave(String name, EnemyType enemyType, double intensity, int emeralds, int xp, String message) {
     this.AwardedEmeralds = emeralds;
     this.AwardedXp = xp;
+    this.AwardedArrows = 8;
     this.Name = name;
 
     EnemyWave enemies = new EnemyWave();

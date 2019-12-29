@@ -181,11 +181,11 @@ DONE - Big giant zombie does nothing
 DONE - Fix spawn in ground bug
 DONE - Make villagers immune to lightning
 DONE - Ghasts fly too high
+DONE - Award arrows at the end of each round
 
 Turn more blocks into stone
 Fix anvil setData calls
 Reset villager health (or increase)
-Award arrows at the end of each round
 
 Add enemy buffs to format
 Separate out armor and all equipment slots (let user customize)

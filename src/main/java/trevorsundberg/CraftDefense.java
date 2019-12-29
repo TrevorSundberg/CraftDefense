@@ -1164,6 +1164,16 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
     }
   }
 
+  public void award(Material material, int count) {
+    this.getServer().broadcastMessage(
+        Text.Aqua + "*** Awarded " + count + " " + Utilities.toHumanFriendlyMaterialName(material) + "(s)! ***");
+
+    ItemStack emeralds = new ItemStack(material, count);
+    for (Player player : this.getServer().getOnlinePlayers()) {
+      player.getInventory().addItem(emeralds);
+    }
+  }
+
   // Called by the DayTimeManager
   @SuppressWarnings("deprecation")
   @Override
@@ -1173,8 +1183,6 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
 
     Wave waveCompleted = this.Waves.get(oldDay);
 
-    Collection<? extends Player> players = this.getServer().getOnlinePlayers();
-
     // For now since block protection is a difficult problem to solve, just
     // regenerate the siege path
     // This does mean they can get extra nether brick... but oh well!
@@ -1182,18 +1190,18 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
 
     this.getServer().broadcastMessage(Text.Green + "*** Day " + (oldDay + 1) + " complete. ***");
 
-    if (waveCompleted.AwardedEmeralds != 0) {
-      this.getServer().broadcastMessage(Text.Aqua + "*** Awarded " + waveCompleted.AwardedEmeralds + " emerald! ***");
+    if (waveCompleted.AwardedEmeralds != 0)
+      this.award(Material.EMERALD, waveCompleted.AwardedEmeralds);
 
-      ItemStack emeralds = new ItemStack(Material.EMERALD, waveCompleted.AwardedEmeralds);
+    if (waveCompleted.AwardedArrows != 0)
+      this.award(Material.ARROW, waveCompleted.AwardedArrows);
 
-      for (Player player : players) {
-        player.getInventory().addItem(emeralds);
+    if (waveCompleted.AwardedXp != 0) {
+      for (Player player : this.getServer().getOnlinePlayers()) {
         player.giveExp(waveCompleted.AwardedXp);
       }
-    }
-    if (waveCompleted.AwardedXp != 0)
       this.getServer().broadcastMessage(Text.Aqua + "*** Awarded " + waveCompleted.AwardedXp + " xp! ***");
+    }
 
     this.AttackerManager.killAllAttackers();
 
@@ -1201,7 +1209,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
     if (newDay == this.Waves.size()) {
       this.getServer().broadcastMessage(Text.DarkGreen + "*** Congratulations, you've beat the game! ***");
 
-      for (Player player : players) {
+      for (Player player : this.getServer().getOnlinePlayers()) {
         player.setHealth(player.getMaxHealth());
         player.setFireTicks(0);
         player.setLevel(999);

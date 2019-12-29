@@ -45,7 +45,7 @@ public class InfiniteBlockManager implements Listener {
   private void updateName(ItemStack stack) {
     ItemMeta meta = stack.getItemMeta();
     if (meta.getDisplayName() == null || meta.getDisplayName().length() == 0) {
-      meta.setDisplayName(Prefix + stack.getType().toString().replace("_", " ").toLowerCase());
+      meta.setDisplayName(Prefix + Utilities.toHumanFriendlyMaterialName(stack.getType()));
     }
     stack.setItemMeta(meta);
   }
