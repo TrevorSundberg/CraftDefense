@@ -128,37 +128,17 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
     this.Waves.add(new Wave("Spiders", Wave.EnemyType.SPIDER, 3, 3, 21));
     this.Waves.add(new Wave("Wolves", Wave.EnemyType.WOLF, 5, 3, 22));
 
-    // Bat wave
-    {
-      Wave wave = new Wave();
-      wave.AwardedEmeralds = 3;
-      wave.AwardedXp = 24;
-      wave.Name = "Bats";
-      wave.Message = "A tiny fluttering sound...";
-
-      // Bats
-      {
-        Wave.EnemyWave enemyWave = new Wave.EnemyWave();
-        enemyWave.InitialAmount = 4;
-        enemyWave.PerDifficulty = 3;
-        enemyWave.PerPlayer = 4;
-
-        enemyWave.Type = Wave.EnemyType.BAT;
-        enemyWave.DelaySeconds = 1;
-        enemyWave.EnemiesPerSecond = 0.9;
-        wave.EnemyWaves.add(enemyWave);
-      }
-      // Lightning
-      {
-        SpecialWave specialWave = new SpecialWave();
-        specialWave.Type = Wave.SpecialWaveType.LIGHTNING;
-        specialWave.DelaySeconds = 26;
-        specialWave.DurationSeconds = 30;
-        wave.SpecialWaves.add(specialWave);
-      }
-
-      this.Waves.add(wave);
-    }
+    /*
+     * { Wave wave = new Wave(); wave.AwardedEmeralds = 3; wave.AwardedXp = 24;
+     * wave.Name = "Bats"; wave.Message = "A tiny fluttering sound..."; {
+     * Wave.EnemyWave enemyWave = new Wave.EnemyWave(); enemyWave.InitialAmount = 4;
+     * enemyWave.PerDifficulty = 3; enemyWave.PerPlayer = 4; enemyWave.Type =
+     * Wave.EnemyType.BAT; enemyWave.DelaySeconds = 1; enemyWave.EnemiesPerSecond =
+     * 0.9; wave.EnemyWaves.add(enemyWave); } { SpecialWave specialWave = new
+     * SpecialWave(); specialWave.Type = Wave.SpecialWaveType.LIGHTNING;
+     * specialWave.DelaySeconds = 26; specialWave.DurationSeconds = 30;
+     * wave.SpecialWaves.add(specialWave); } this.Waves.add(wave); }
+     */
 
     this.Waves.add(new Wave("Villager Zombies", Wave.EnemyType.VILLAGER_ZOMBIE, 6, 1, 18));
     {
