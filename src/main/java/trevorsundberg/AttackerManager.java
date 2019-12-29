@@ -266,15 +266,17 @@ public class AttackerManager implements Listener {
           final long TimeUntilDeath = 20 * 15;
 
           final AttackerManager self = this;
-          this.Plugin.getServer().getScheduler().runTaskLater(this.Plugin, new Runnable() {
-            @Override
-            public void run() {
-              if (self.Plugin.isEnabled() == false)
-                return;
-              if (e.isValid())
-                e.remove();
-            }
-          }, TimeUntilDeath);
+          if (this.Plugin.isEnabled()) {
+            this.Plugin.getServer().getScheduler().runTaskLater(this.Plugin, new Runnable() {
+              @Override
+              public void run() {
+                if (self.Plugin.isEnabled() == false)
+                  return;
+                if (e.isValid())
+                  e.remove();
+              }
+            }, TimeUntilDeath);
+          }
         } else {
           e.remove();
         }
