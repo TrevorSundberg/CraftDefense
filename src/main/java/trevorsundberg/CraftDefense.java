@@ -751,7 +751,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       public void run() {
         if (self.isEnabled() == false)
           return;
-        for (VillagerInfo info : self.Villagers.values()) {
+        for (VillagerInfo info : self.Villagers.values().toArray(new VillagerInfo[self.Villagers.size()])) {
           if (info.Villager.isDead() || info.Villager.isValid() == false) {
             self.removeVillager(info.Villager);
           }
@@ -1780,14 +1780,6 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
         player.damage(10000);
       }
 
-      final CraftDefense self = this;
-      this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-        public void run() {
-          for (Player player : self.getServer().getOnlinePlayers()) {
-            player.kickPlayer("GAME OVER");
-          }
-        }
-      }, 0, Utilities.TicksPerSecond);
       // Turn off the plugin entirely
       this.shutDown();
     }
