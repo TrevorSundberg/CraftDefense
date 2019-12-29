@@ -1462,7 +1462,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       this.MainWorldInitializedOnFirstJoin = true;
 
       final CraftDefense self = this;
-      ;
+
       // This is so super ghetto, we've already initialized the world,
       // just do it again to avoid caves wrecking our crap (after the
       // first player joins, 1 second later)
@@ -1472,6 +1472,13 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
           if (self.isEnabled() == false)
             return;
           self.initializeMainWorld();
+
+          for (Player player : self.getServer().getOnlinePlayers()) {
+            World world = player.getWorld();
+            while (!world.getBlockAt(player.getLocation()).isPassable()) {
+              player.teleport(player.getLocation().add(new Vector(0, 1, 0)));
+            }
+          }
         }
       }, Utilities.TicksPerSecond);
     }
