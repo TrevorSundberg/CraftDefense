@@ -183,9 +183,14 @@ DONE - Make villagers immune to lightning
 DONE - Ghasts fly too high
 DONE - Award arrows at the end of each round
 
+Remove the ender dragon push behavior, just let them shoot the fireballs
+Make this build on Travis and deploy a zip file with a run.bat and run.sh script
 Turn more blocks into stone
 Fix anvil setData calls
 Reset villager health (or increase)
+Record last place for infinite torch (it changes places)
+Cook zombie meat to make mutton
+Make enemies change targets every 20 or so seconds
 
 Add enemy buffs to format
 Separate out armor and all equipment slots (let user customize)
