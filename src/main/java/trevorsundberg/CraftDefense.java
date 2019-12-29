@@ -1677,6 +1677,9 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       s = new ItemStack(Material.WATER_BUCKET, 1);
       p.getInventory().addItem(s);
 
+      s = new ItemStack(Material.FLINT_AND_STEEL, 1);
+      p.getInventory().addItem(s);
+
       s = new ItemStack(Material.TROPICAL_FISH, 1);
       p.getInventory().addItem(s);
 
@@ -1755,6 +1758,8 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
   }
 
   private void removeVillager(Villager villager) {
+    System.out.println(villager.getLastDamage());
+    System.out.println(villager.getLastDamageCause());
     // Remove the villager from the list
     this.Villagers.remove(villager);
 
@@ -1893,6 +1898,7 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
         event.setCancelled(true);
         return;
       }
+      System.out.println(event.getCause());
       Location l = event.getEntity().getLocation();
       l.getWorld().playEffect(l, Effect.EXTINGUISH, 0);
       l.getWorld().playEffect(l, Effect.GHAST_SHRIEK, 0);

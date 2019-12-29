@@ -244,6 +244,7 @@ public class Wave {
       EnderDragon dragon = (EnderDragon) w.spawnEntity(l, EntityType.ENDER_DRAGON);
       dragon.setAI(true);
       dragon.setPhase(Phase.CIRCLING);
+      dragon.setMaxHealth(dragon.getMaxHealth() * 2);
       dragon.resetMaxHealth();
       return dragon;
     }

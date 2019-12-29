@@ -15,6 +15,7 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
+import org.bukkit.craftbukkit.v1_15_R1.entity.CraftEnderDragon;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.EnderDragon;
@@ -35,6 +36,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.util.Vector;
 
+import net.minecraft.server.v1_15_R1.DragonControllerCharge;
+import net.minecraft.server.v1_15_R1.EntityEnderDragon;
+import net.minecraft.server.v1_15_R1.IDragonController;
+import net.minecraft.server.v1_15_R1.Vec3D;
 import trevorsundberg.Wave.Attack;
 
 public class AttackerManager implements Listener {
@@ -397,14 +402,16 @@ public class AttackerManager implements Listener {
           case FLY_TO_PORTAL:
           case LAND_ON_PORTAL:
           case LEAVE_PORTAL:
-            dragon.setPhase(Phase.STRAFING);
+            dragon.setPhase(Phase.CHARGE_PLAYER);
             break;
           default:
           }
-          if (dragon.getPhase() == Phase.STRAFING) {
-            moveSpeed = 0.28;
-            yOffset = 1;
-            zScale = 0.7;
+          CraftEnderDragon craftDragon = (CraftEnderDragon) dragon;
+          EntityEnderDragon enderDragon = craftDragon.getHandle();
+          IDragonController currentController = enderDragon.getDragonControllerManager().a();
+          if (currentController instanceof DragonControllerCharge) {
+            DragonControllerCharge charge = (DragonControllerCharge) currentController;
+            charge.a(new Vec3D(targetPos.getX(), targetPos.getY(), targetPos.getZ()));
           }
         } else if (e.getType() == EntityType.GHAST) {
           moveSpeed = 0.2;
