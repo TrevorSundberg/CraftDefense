@@ -2,7 +2,7 @@ script:
 - ./build.sh
 deploy:
   provider: releases
-  file: ./server
+  file: ./server/server.zip
   api_key: $GITHUB_TOKEN
   skip_cleanup: true
   on:
