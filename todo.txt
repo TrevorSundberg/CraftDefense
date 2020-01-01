@@ -182,15 +182,27 @@ DONE - Fix spawn in ground bug
 DONE - Make villagers immune to lightning
 DONE - Ghasts fly too high
 DONE - Award arrows at the end of each round
+DONE - Remove the ender dragon push behavior, just let them shoot the fireballs
 
-Remove the ender dragon push behavior, just let them shoot the fireballs
 Make this build on Travis and deploy a zip file with a run.bat and run.sh script
 Turn more blocks into stone
 Fix anvil setData calls
 Reset villager health (or increase)
 Record last place for infinite torch (it changes places)
-Cook zombie meat to make mutton
+Cook zombie meat to make raw mutton
 Make enemies change targets every 20 or so seconds
+If any attacker gets way outside the zone, teleport them back (ender dragons...)
+No flint/steel above
+No dispsense above
+Blazes don't really move (add slithering ankle biters)
+Wave bar doesn't go away at the end
+Wither glitches out and stays in one place (don't push it as hard...)
+Add witch to final wave
+Make obsidain slightly weaker
+Get rid of anvil wave
+More ender dragons (harder.. ender mites?)
+Move blazes up to the first section (fire!)
+Collect arrows from arrow wave
 
 Add enemy buffs to format
 Separate out armor and all equipment slots (let user customize)
