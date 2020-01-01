@@ -185,6 +185,7 @@ DONE - Award arrows at the end of each round
 DONE - Remove the ender dragon push behavior, just let them shoot the fireballs
 DONE - Get rid of anvil wave
 DONE - Wither glitches out and stays in one place (don't push it as hard...)
+DONE - Blazes don't really move (add slithering ankle biters)
 
 Make this build on Travis and deploy a zip file with a run.bat and run.sh script
 Turn more blocks into stone
@@ -196,7 +197,6 @@ Make enemies change targets every 20 or so seconds
 If any attacker gets way outside the zone, teleport them back (ender dragons...)
 No flint/steel above
 No dispsense above
-Blazes don't really move (add slithering ankle biters)
 Wave bar doesn't go away at the end
 Add witch to final wave
 Make obsidain slightly weaker
