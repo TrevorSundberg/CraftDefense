@@ -427,7 +427,7 @@ public class AttackerManager implements Listener {
             e.teleport(new Location(e.getWorld(), 0, witherLocation.getY() + 5, 0));
           }
 
-          moveSpeed = 0.5;
+          moveSpeed = 0.1;
           yOffset = 15;
         } else if (e.getType() == EntityType.SLIME || e.getType() == EntityType.MAGMA_CUBE) {
           moveSpeed = 0.19;
