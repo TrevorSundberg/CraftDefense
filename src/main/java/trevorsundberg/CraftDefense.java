@@ -337,45 +337,21 @@ public class CraftDefense extends JavaPlugin implements Listener, DayTimeManager
       this.Waves.add(wave);
     }
 
-    {
-      Wave wave = new Wave();
-      wave.AwardedEmeralds = 6;
-      wave.AwardedXp = 60;
-      wave.Name = "ACME";
-
-      // Cave-spider
-      {
-        Wave.EnemyWave enemyWave = new Wave.EnemyWave();
-        enemyWave.InitialAmount = 5;
-        enemyWave.PerDifficulty = 3;
-        enemyWave.PerPlayer = 5;
-        enemyWave.Type = Wave.EnemyType.CAVE_SPIDER;
-        enemyWave.DelaySeconds = 0;
-        enemyWave.EnemiesPerSecond = 0.6;
-        wave.EnemyWaves.add(enemyWave);
-      }
-      // Anviles
-      {
-        Wave.SpecialWave specialWave = new Wave.SpecialWave();
-        specialWave.Type = SpecialWaveType.ANVIL;
-        specialWave.DurationSeconds = 40;
-        specialWave.DelaySeconds = 5;
-        specialWave.Intensity = 300;
-        wave.SpecialWaves.add(specialWave);
-      }
-      // Cave-spider (rush)
-      {
-        Wave.EnemyWave enemyWave = new Wave.EnemyWave();
-        enemyWave.InitialAmount = 5;
-        enemyWave.PerDifficulty = 3;
-        enemyWave.PerPlayer = 5;
-        enemyWave.Type = Wave.EnemyType.CAVE_SPIDER;
-        enemyWave.DelaySeconds = 16;
-        enemyWave.EnemiesPerSecond = 5;
-        wave.EnemyWaves.add(enemyWave);
-      }
-      this.Waves.add(wave);
-    }
+    /*
+     * { Wave wave = new Wave(); wave.AwardedEmeralds = 6; wave.AwardedXp = 60;
+     * wave.Name = "ACME"; { Wave.EnemyWave enemyWave = new Wave.EnemyWave();
+     * enemyWave.InitialAmount = 5; enemyWave.PerDifficulty = 3; enemyWave.PerPlayer
+     * = 5; enemyWave.Type = Wave.EnemyType.CAVE_SPIDER; enemyWave.DelaySeconds = 0;
+     * enemyWave.EnemiesPerSecond = 0.6; wave.EnemyWaves.add(enemyWave); } {
+     * Wave.SpecialWave specialWave = new Wave.SpecialWave(); specialWave.Type =
+     * SpecialWaveType.ANVIL; specialWave.DurationSeconds = 40;
+     * specialWave.DelaySeconds = 5; specialWave.Intensity = 300;
+     * wave.SpecialWaves.add(specialWave); } { Wave.EnemyWave enemyWave = new
+     * Wave.EnemyWave(); enemyWave.InitialAmount = 5; enemyWave.PerDifficulty = 3;
+     * enemyWave.PerPlayer = 5; enemyWave.Type = Wave.EnemyType.CAVE_SPIDER;
+     * enemyWave.DelaySeconds = 16; enemyWave.EnemiesPerSecond = 5;
+     * wave.EnemyWaves.add(enemyWave); } this.Waves.add(wave); }
+     */
 
     {
       Wave wave = new Wave();
